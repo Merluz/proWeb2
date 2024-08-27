@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/image/icon.png"> <!-- Percorso aggiornato per l'icona -->
+    <link rel="stylesheet" href="/css/stylesheet.css"> <!-- Percorso aggiornato per il CSS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="/js/gestioneCRUD.js"></script> <!-- Percorso aggiornato per il JS -->
+    <title>Servizio Sanitario</title>
+</head>
+<body>
+    <header>
+        <div id="header-container">
+            <h1 id="first">Portale Sanità</h1>
+            <h1 id="second">Regionale</h1>
+        </div>
+        <a class="header-link" href="https://www.fascicolosanitario.regione.lombardia.it/">
+            <button id="MakeAnAppointment">Prendi Appuntamento</button>
+        </a>
+    </header>
+    <div class="divider">
+        <aside class="aside-menu">
+            <div class="sidebar">
+                <p id="navbar-text">Esplora Portale</p>
+                <a href="/" class="sidebar-link">HomePage</a>
+                <a href="/ospedali" class="sidebar-link">Ospedali</a>
+                <a href="/ricovero" class="sidebar-link">Ricoveri</a>
+                <a href="/cittadini" class="sidebar-link">Cittadini</a>
+                <a href="/patologia" class="sidebar-link">Patologie</a>
+            </div>
+            <script src="/js/activeNavbar.js"></script>
+            <div class="search-container">
+                <form action="#" method="get" th:action="@{/patologia}">
+                    <p class="title-search-container">Filtra</p>
+                    <input type="text" placeholder="Cerca per Nome" name="nome">
+                    <hr>
+                    <div id="container-radio">
+                        <label for="scelta" id="label-radio-general">Scegli tra:</label>
+                        <input type="radio" id="cronica" name="opt" value="cronica">
+                        <label for="cronica" class="label-radio">Cronica</label><br>
+                        <input type="radio" id="mortale" name="opt" value="mortale">
+                        <label for="mortale" class="label-radio">Mortale</label><br>
+                        <input type="radio" id="qualsiasi" name="opt" value="qualsiasi">
+                        <label for="qualsiasi" class="label-radio">Qualsiasi</label><br>
+                    </div>
+                    <hr>
+                    <label id="gravity-label" for="gravita">Indica la gravità da 1 a 10</label>
+                    <input type="number" name="gravita" id="gravity" min="1" max="10">
+                    <input type="submit" value="Cerca">
+                </form>
+            </div>
+        </aside>
+        <div class="master">
+            <div class="ordering">
+                <form method="get" action="#">
+                    <div class="sort-bar">
+                        <label for="sort-select">Ordina per:</label>
+                        <select id="sort-select" name="order">
+                            <!-- Opzioni di ordinamento -->
+                        </select>
+                    </div>
+                    <button type="submit" name="cercaOrdine" id="ordering-submit">Ordina</button>
+                </form>
+                <form method="post" action="#">
+                    <input type="hidden" name="theme" id="theme-input">
+                </form>
+                <script>
+                    function setTheme(theme) {
+                        document.getElementById("theme-input").value = theme;
+                        document.forms[0].submit();
+                    }
+                </script>
+            </div>
+            <div class="container">
+            <div class="displayer-results">
+                <div class="titles-results-patologia">
+                    <div class="titles-elements-patologia">Nome</div>
+                    <div class="titles-elements-patologia">Cod. Patologia</div>
+                    <div class="titles-elements-patologia">Criticità</div>
+                    <div class="titles-elements-patologia">Cronica</div>
+                    <div class="titles-elements-patologia">Mortale</div>
+                </div>
+                <div class="results-list">
+                    <div th:each="patologia : ${patologie}" class="records-patologia">
+                        <div class="result-element" th:text="${patologia.nome}"></div>
+                        <div class="result-element" th:text="${patologia.CodPatologia}"></div>
+                        <div class="result-element" th:text="${patologia.criticità}"></div>
+                        <div class="result-element" th:text="${patologia.cronica ? 'Sì' : 'No'}"></div>
+                        <div class="result-element" th:text="${patologia.mortale ? 'Sì' : 'No'}"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        
+        <script src="/js/gestioneCRUD.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    </div>
+    <footer>
+        <p>&copy; 2024 Portale Sanitario Regionale. Tutti i diritti riservati.</p>
+    </footer>
+</body>
+</html>
+
+<script>
+document.addEventListener('load', activeTag());
+    function activeTag(){
+    var url = window.location.href;
+    console.log(url);
+    var navTags = document.getElementsByClassName("sidebar-link");
+
+    Array.from(navTags).forEach(a => {
+        var aHref = a.getAttribute("href");
+        aHref=aHref.substring(2);
+        if(url.includes(aHref)){
+            a.classList.add("active");
+        }
+    });
+}
+</script>

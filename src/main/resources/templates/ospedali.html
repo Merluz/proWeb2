@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/image/icon.png">
+    <link rel="stylesheet" href="/css/stylesheet.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="/js/gestioneCRUD.js"></script>
+    <title>Servizio Sanitario</title>
+</head>
+<body>
+    <header>
+        <div id="header-container">
+            <h1 id="first">Portale Sanità</h1>
+            <h1 id="second">Regionale</h1>
+        </div>
+        <a class="header-link" href="https://www.fascicolosanitario.regione.lombardia.it/">
+            <button id="MakeAnAppointment">Prendi Appuntamento</button>
+        </a>
+    </header>
+    <div class="divider">
+        <aside class="aside-menu">
+            <div class="sidebar">
+                <p id="navbar-text">Esplora Portale</p>
+                <a href="/" class="sidebar-link">HomePage</a>
+                <a href="/ospedali" class="sidebar-link">Ospedali</a>
+                <a href="/ricovero" class="sidebar-link">Ricoveri</a>
+                <a href="/cittadini" class="sidebar-link">Cittadini</a>
+                <a href="/patologia" class="sidebar-link">Patologie</a>
+            </div>
+            <script src="/js/activeNavbar.js"></script>
+            <div class="search-container">
+                <form action="#" method="get" th:action="@{/ospedali}">
+                    <p class="title-search-container">Filtra</p>
+                    <input type="text" placeholder="Cerca per Nome" name="nome">
+                    <input type="text" placeholder="Cerca per Codice" name="codice">
+                    <input type="text" placeholder="Cerca per Città" name="citta">
+                    <hr>
+                    <input type="submit" name="cercaFiltro" placeholder="Cerca" value="Cerca">
+                </form>
+            </div>
+        </aside>
+        <div class="master">
+            <div class="ordering">
+                <form method="get" action="#">
+                    <div class="sort-bar">
+                        <label for="sort-select">Ordina per:</label>
+                        <select id="sort-select" name="order">
+                            <option value="nome">Nome</option>
+                            <option value="cognome">ciità</option>
+                        </select>
+                    </div>
+                    <button type="submit" name="cercaOrdine" id="ordering-submit">Ordina</button>
+                </form>
+            </div>
+            <div class="container">
+                <div class="displayer-results">
+                    <div class="titles-results-ospedale">
+                        <div class="titles-elements-ospedale">Cod. Ospedale</div>
+                        <div class="titles-elements-ospedale">Nome</div>
+                        <div class="titles-elements-ospedale">Città</div>
+                        <div class="titles-elements-ospedale">Indirizzo</div>
+                        <div class="titles-elements-ospedale">Direttore Sanitario</div>
+                    </div>
+                    <div class="results-list">
+                        <div th:each="ospedale : ${ospedali}" class="records-ospedale">
+                            <div class="result-element" th:text="${ospedale.CODospedale}"></div>
+                            <div class="result-element" th:text="${ospedale.NOMEospedale}"></div>
+                            <div class="result-element" th:text="${ospedale.CITTAospedale}"></div>
+                            <div class="result-element" th:text="${ospedale.INDIRIZZOospedale}"></div>
+                            <div class="result-element" th:text="${ospedale.DIRETTORESANITARIOospedale}"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 Portale Sanitario Regionale. Tutti i diritti riservati.</p>
+    </footer>
+</body>
+</html>
+
+<script>
+document.addEventListener('load', activeTag());
+    function activeTag(){
+    var url = window.location.href;
+    console.log(url);
+    var navTags = document.getElementsByClassName("sidebar-link");
+
+    Array.from(navTags).forEach(a => {
+        var aHref = a.getAttribute("href");
+        aHref=aHref.substring(2);
+        if(url.includes(aHref)){
+            a.classList.add("active");
+        }
+    });
+}
+</script>

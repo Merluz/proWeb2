@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/image/icon.png"> <!-- Percorso aggiornato per l'icona -->
+    <link rel="stylesheet" href="/css/stylesheet.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="/js/gestioneCRUD.js"></script>
+    <title>Servizio Sanitario</title>
+</head>
+<body>
+    <header>
+        <div id="header-container">
+            <h1 id="first">Portale Sanità</h1>
+            <h1 id="second">Regionale</h1>
+        </div>
+        <a class="header-link" href="https://www.fascicolosanitario.regione.lombardia.it/">
+            <button id="MakeAnAppointment">Prendi Appuntamento</button>
+        </a>
+    </header>
+    <div class="divider">
+        <aside class="aside-menu">
+            <div class="sidebar">
+                <p id="navbar-text">Esplora Portale</p>
+                <a href="/" class="sidebar-link">HomePage</a>
+                <a href="/ospedali" class="sidebar-link">Ospedali</a>
+                <a href="/ricovero" class="sidebar-link">Ricoveri</a>
+                <a href="/cittadini" class="sidebar-link">Cittadini</a>
+                <a href="/patologia" class="sidebar-link">Patologie</a>
+            </div>
+            <script src="/js/activeNavbar.js"></script>
+            <div class="search-container">
+                <form action="/cittadini" method="get">
+                    <p class="title-search-container">Filtra</p>
+                    <input type="text" placeholder="Cerca per Nome" name="nome" th:value="${param.nome}">
+                    <input type="text" placeholder="Cerca per Cognome" name="cognome" th:value="${param.cognome}">
+                    <input type="text" placeholder="Cerca per Città" name="citta" th:value="${param.citta}">
+                    <hr>
+                    <label class="label-data" for="data_inizio">Data di nascita:</label>
+                    <input type="date" name="data_inizio" th:value="${param.dataInizio != null ? #dates.format(param.dataInizio, 'yyyy-MM-dd') : ''}">
+                    <input type="date" name="data_fine" th:value="${param.dataFine != null ? #dates.format(param.dataFine, 'yyyy-MM-dd') : ''}">
+                    <input type="submit" value="Cerca">
+                </form>
+            </div>
+        </aside>
+        <div class="master">
+            <div class="ordering">
+                <form method="get" action="#">
+                    <div class="sort-bar">
+                        <label for="sort-select">Ordina per:</label>
+                        <select id="sort-select" name="order">
+                            <option value="nome">Nome</option>
+                            <option value="cognome">Cognome</option>
+                        </select>
+                    </div>
+                    <button type="submit" id="ordering-submit">Ordina</button>
+                </form>
+                <form method="post" action="#">
+                    <input type="hidden" name="theme" id="theme-input">
+                </form>
+                <script>
+                    function setTheme(theme) {
+                        document.getElementById("theme-input").value = theme;
+                        document.forms[1].submit(); // Assicurati che l'indice del modulo sia corretto
+                    }
+                </script>
+            </div>
+            <div class="container">
+                <div class="displayer-results">
+                    <div class="titles-results-cittadini">
+                        <div class="titles-elements-cittadini">CSSN</div>
+                        <div class="titles-elements-cittadini">Nome</div>
+                        <div class="titles-elements-cittadini">Cognome</div>
+                        <div class="titles-elements-cittadini">Indirizzo</div>
+                        <div class="titles-elements-cittadini">Luogo di Nascita</div>
+                        <div class="titles-elements-cittadini">Data di Nascita</div>
+                    </div>
+                    <div th:if="${#lists.isEmpty(cittadini)}" class="no-results">
+                        Nessun cittadino trovato con i criteri di ricerca.
+                    </div>
+                    <div th:each="cittadino : ${cittadini}" class="records-cittadini">
+                        <div class="result-element" th:text="${cittadino.CSSNcittadino}"></div>
+                        <div class="result-element" th:text="${cittadino.NOMEcittadino}"></div>
+                        <div class="result-element" th:text="${cittadino.COGNOMEcittadino}"></div>
+                        <div class="result-element" th:text="${cittadino.INDIRIZZOcittadino}"></div>
+                        <div class="result-element" th:text="${cittadino.LUOGONASCITAcittadino}"></div>
+                        <div class="result-element" th:text="${cittadino.DATANASCITAcittadino}"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <script src="/js/gestioneCRUD.js"></script>
+    </div>
+    <footer>
+        <p>&copy; 2024 Portale Sanitario Regionale. Tutti i diritti riservati.</p>
+    </footer>
+</body>
+</html>
+
+<script>
+document.addEventListener('load', activeTag());
+    function activeTag(){
+    var url = window.location.href;
+    console.log(url);
+    var navTags = document.getElementsByClassName("sidebar-link");
+
+    Array.from(navTags).forEach(a => {
+        var aHref = a.getAttribute("href");
+        aHref=aHref.substring(2);
+        if(url.includes(aHref)){
+            a.classList.add("active");
+        }
+    });
+}
+</script>
