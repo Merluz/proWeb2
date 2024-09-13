@@ -84,17 +84,16 @@
 
 <script>
 document.addEventListener('load', activeTag());
-    function activeTag(){
+function activeTag(){
     var url = window.location.href;
-    console.log(url);
     var navTags = document.getElementsByClassName("sidebar-link");
-
+    const path = new URL(url).pathname;
     Array.from(navTags).forEach(a => {
         var aHref = a.getAttribute("href");
-        aHref=aHref.substring(2);
-        if(url.includes(aHref)){
+        if (path === aHref) {
             a.classList.add("active");
         }
-    });
+
+});
 }
 </script>

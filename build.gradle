@@ -25,7 +25,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
     
-    // MongoDB Driver - Assicurati che la versione sia compatibile
+    // MongoDB Driver 
     implementation 'org.mongodb:mongodb-driver-sync:5.1.2' 
 
     // DevTools for development

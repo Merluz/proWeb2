@@ -12,11 +12,15 @@ import com.mongodb.client.model.Sorts;
 
 import org.bson.Document;
 import org.bson.types.ObjectId;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.management.Query;
 
 @Service
 public class MongoService {
@@ -148,6 +152,32 @@ public class MongoService {
         MongoCollection<Document> collection = database.getCollection(RECOVERY_COLLECTION_NAME);
         collection.deleteOne(new Document("_id", new ObjectId(id)));
     }
+    
+    public void aggiungiRicovero(Document nuovoRicovero) {
+        MongoDatabase database = mongoClient.getDatabase(DATABASE_NAME);
+        MongoCollection<Document> collection = database.getCollection(RECOVERY_COLLECTION_NAME);
+        collection.insertOne(nuovoRicovero);
+    }
+    
+    public void updateRicovero(String id, Document updateData) {
+        MongoDatabase database = mongoClient.getDatabase(DATABASE_NAME);
+        MongoCollection<Document> collection = database.getCollection(RECOVERY_COLLECTION_NAME);
+
+
+        Document query = new Document("_id", new ObjectId(id));
+
+
+        Document update = new Document();
+        if (!updateData.isEmpty()) {
+            update.append("$set", updateData);
+        } else {
+            return;
+        }
+
+        collection.updateOne(query, update);
+    }
+
+
 
 
     

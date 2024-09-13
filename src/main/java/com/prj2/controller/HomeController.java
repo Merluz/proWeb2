@@ -92,6 +92,61 @@ public class HomeController {
         mongoService.deleteRicovero(id);
         return "redirect:/ricovero"; // Redirect alla pagina dei ricoveri dopo l'eliminazione
     }
+    
+    @PostMapping("/aggiungiRicovero")
+    public String aggiungiRicovero(
+            @RequestParam("newCODricovero") String codRicovero,
+            @RequestParam("newCODospedale") String codOspedale,
+            @RequestParam("newcosto") String costo,
+            @RequestParam("newdata") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dataRicovero,
+            @RequestParam("newdurataRicovero") int durataRicovero,
+            @RequestParam("newmotivo") String motivo,
+            @RequestParam("newCSSN") String cssnPaziente,
+            Model model) {
+
+       
+        Document nuovoRicovero = new Document()
+                .append("CODricovero", codRicovero)
+                .append("CODospedale", codOspedale)
+                .append("COSTOricovero", costo)
+                .append("DATAricovero", dataRicovero.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")))
+                .append("DURATAricovero", durataRicovero)
+                .append("MOTIVOricovero", motivo)
+                .append("PAZIENTEricovero", cssnPaziente);
+
+        
+        mongoService.aggiungiRicovero(nuovoRicovero);
+
+       
+        return "redirect:/ricovero";
+    }
+    
+    @PostMapping("/modificaRicovero")
+    public String modificaRicovero(
+            @RequestParam("id") String id,
+            @RequestParam("CODricovero") String codRicovero,
+            @RequestParam("CODospedale") String codOspedale,
+            @RequestParam("COSTOricovero") String costo,
+            @RequestParam("DATAricovero") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dataRicovero,
+            @RequestParam("DURATAricovero") int durataRicovero,
+            @RequestParam("MOTIVOricovero") String motivo,
+            @RequestParam("PAZIENTEricovero") String paziente,
+            Model model) {
+
+       
+        Document updateData = new Document("CODricovero", codRicovero)
+                .append("CODospedale", codOspedale)
+                .append("COSTOricovero", costo)
+                .append("DATAricovero", dataRicovero)
+                .append("DURATAricovero", durataRicovero)
+                .append("MOTIVOricovero", motivo)
+                .append("PAZIENTEricovero", paziente);
+
+        
+        mongoService.updateRicovero(id, updateData);
+
+        return "redirect:/ricovero";
+    }
 
 
 }

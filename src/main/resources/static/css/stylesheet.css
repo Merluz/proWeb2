@@ -581,8 +581,9 @@ span {
     background-color: #8b9c552d;
     text-align: center;
     padding-left:10px;
-    display: grid;
-    grid-template-columns: 40px  minmax(30px,1fr) minmax(30px,1fr) minmax(30px,1fr) minmax(30px,1fr) minmax(30px,1fr) minmax(30px,1fr) minmax(30px,1fr) 40px;
+    display:grid;
+    grid-template-columns:auto;
+    grid-template-rows: auto auto;
     align-content: center;
     justify-content: normal;
     align-items: center;
@@ -608,7 +609,7 @@ span {
     width:35px;
     background-color: transparent;
     border: 1px solid transparent;
-    background-image: url("/images/icon-modifica.png");
+    background-image: url("/image/icon-modifica.png");
     background-size: cover;
 }
 .modify{
@@ -625,17 +626,24 @@ span {
     background-color: #fc6e6e;
 }
 .records-ricovero-modify{
-    padding:10px;
-    border-radius: 0px 0px 15px 15px;
+	padding-top:10px;
+    margin-top:10px;
+    border-top: 2px solid #7d2525;
     margin-bottom:5px;
-    background-color: aliceblue;
+    background-color:trasparent;
     text-align: center;
     padding-left:10px;
     display: grid;
     grid-template-columns: 40px  minmax(30px,1fr) minmax(30px,1fr) minmax(30px,1fr) minmax(30px,1fr) minmax(30px,1fr) minmax(30px,1fr) minmax(30px,1fr) 40px;
+    grid-template-rows: auto;
     align-content: center;
     justify-content: normal;
     align-items: center;
+}
+.record-ricovero-displayer{
+	 display: grid;
+     grid-template-columns: 40px  minmax(30px,1fr) minmax(30px,1fr) minmax(30px,1fr) minmax(30px,1fr) minmax(30px,1fr) minmax(30px,1fr) minmax(30px,1fr) 40px;
+	margin-top:10px
 }
 .records-ricovero-modify input[type=text]{
     height: 30px;
@@ -684,12 +692,12 @@ span {
     padding-left:5px;
 }
 .submit-data{
+	color:white;
     border-radius:100%;
     height:35px;
     width:35px;
-    border:1px solid white;
-    background-color: aliceblue;
-    background-image: url("../img/icon-modifica.png");
+    background-color: #8c9c55;
+    border: 1px solid #8c9c55;
     background-size: cover;
     padding: 6px;
     transition:0.3s

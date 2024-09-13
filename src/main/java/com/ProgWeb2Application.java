@@ -27,6 +27,6 @@ public class ProgWeb2Application {
             } catch (IOException e) {
                 System.err.println("Unable to open browser: " + e.getMessage());
             }
-        };
+        }; 
     }
 }

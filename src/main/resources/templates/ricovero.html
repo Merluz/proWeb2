@@ -11,7 +11,7 @@
 <body>
     <header>
         <div id="header-container">
-            <h1 id="first">Portale SanitÃ </h1>
+            <h1 id="first">Portale Sanità</h1>
             <h1 id="second">Regionale</h1>
         </div>
         <a class="header-link" href="https://www.fascicolosanitario.regione.lombardia.it/">
@@ -31,29 +31,28 @@
             <script src="/js/activeNavbar.js"></script>
             <div class="search-container">
                <form action="#" method="get" th:action="@{/ricovero}">
-				    <p class="title-search-container">Filtra</p>
-				    <label class="label-data" for="data">Data di ricovero:</label>
-				    <input type="date" name="data_inizio">
-				    <input type="date" name="data_fine">
-				    <hr>
-				    <label class="label-data" for="durata">Giorni di ricovero:</label>
-				    <span class="filter-span">
-				        <span>da</span>
-				        <input type="number" name="gg_inizio">
-				        <span>a</span>
-				        <input type="number" name="gg_fine">
-				    </span>
-				    <hr>
-				    <label class="label-number" for="costo">Costo di ricovero:</label>
-				    <span class="filter-span">
-				        <span>da</span>
-				        <input type="number" name="costo_inizio">
-				        <span>a</span>
-				        <input type="number" name="costo_fine">
-				    </span>
-				    <input type="submit" value="Cerca">
-				</form>
-
+                    <p class="title-search-container">Filtra</p>
+                    <label class="label-data" for="data">Data di ricovero:</label>
+                    <input type="date" name="data_inizio">
+                    <input type="date" name="data_fine">
+                    <hr>
+                    <label class="label-data" for="durata">Giorni di ricovero:</label>
+                    <span class="filter-span">
+                        <span>da</span>
+                        <input type="number" name="gg_inizio">
+                        <span>a</span>
+                        <input type="number" name="gg_fine">
+                    </span>
+                    <hr>
+                    <label class="label-number" for="costo">Costo di ricovero:</label>
+                    <span class="filter-span">
+                        <span>da</span>
+                        <input type="number" name="costo_inizio">
+                        <span>a</span>
+                        <input type="number" name="costo_fine">
+                    </span>
+                    <input type="submit" value="Cerca">
+                </form>
             </div>
         </aside>
         <div class="master">
@@ -62,17 +61,14 @@
                     <div class="sort-bar">
                         <label for="sort-select">Ordina per:</label>
                         <select id="sort-select" name="order">
-						    
-						    <option value="COSTOricovero">Costo</option> <!-- Ordinamento per costo -->
-						    <option value="DURATAricovero">Durata</option> <!-- Ordinamento per durata -->
-						</select>
-
+                            <option value="COSTOricovero">Costo</option> <!-- Ordinamento per costo -->
+                            <option value="DURATAricovero">Durata</option> <!-- Ordinamento per durata -->
+                        </select>
                     </div>
                     <button type="submit" name="cercaOrdine" id="ordering-submit">Ordina</button>
                 </form>
                 <form method="post" action="#">
                     <input type="hidden" name="theme" id="theme-input">
-                    
                 </form>
                 <script>
                     function setTheme(theme) {
@@ -82,7 +78,7 @@
                 </script>
             </div>
             <div class="adding-crud" id="adder">
-                <button class="adding-btn" id="btn-adder" onclick=""> &#43</button>
+                <button class="adding-btn" id="btn-adder" onclick=""> &#43;</button>
                 <p class="adding-text">Aggiungi Ricovero</p>
             </div>
             <div class="container">
@@ -99,33 +95,51 @@
                         <div class="titles-elements-ricovero">Motivo</div>
                         <div class="titles-elements-ricovero">CSSN</div>
                         <div class="titles-elements-ricovero">
-                            <button class="modify-title" id="iconMod"> 
+                            <button class="modify-title" id="iconMod"></button>
                         </div>
                     </div>
                     <div class="results-list">
-    <div th:each="ricovero, iterStat : ${ricoveri}" 
-         class="records-ricovero" 
-         id="rec-[[${iterStat.count}]]" 
-         data-count="[[${iterStat.count}]]" 
-         data-codricovero="[[${ricovero.CODricovero}]]">
+                        <div th:each="ricovero, iterStat : ${ricoveri}" 
+                             class="records-ricovero" 
+                             id="rec-[[${iterStat.count}]]" 
+                             data-count="[[${iterStat.count}]]" 
+                             data-codricovero="[[${ricovero.CODricovero}]]">
+                            <div class="record-ricovero-displayer">
+                                <form action="/eliminaRicovero" method="post" style="display:inline;">
+                                    <input type="hidden" name="id" th:value="${ricovero._id}">
+                                    <button type="submit" class="delete-title"> &#10005; </button>
+                                </form>
+                                <div class="result-element" th:text="${ricovero.CODricovero}"></div>
+                                <div class="result-element" th:text="${ricovero.CODospedale}"></div>
+                                <div class="result-element" th:text="${ricovero.COSTOricovero}"></div>
+                                <div class="result-element" th:text="${ricovero.DATAricovero}"></div>
+                                <div class="result-element" th:text="${ricovero.DURATAricovero}"></div>
+                                <div class="result-element" th:text="${ricovero.MOTIVOricovero}"></div>
+                                <div class="result-element" th:text="${ricovero.PAZIENTEricovero}"></div>
+                                
+                                <!-- Bottone modifica -->
+                                <button type="button" class="modify" onclick="handleModifyClick(this)"></button>
+                            </div>
+                            <!-- Form di modifica nascosto -->
+                            <form th:action="@{/modificaRicovero}" method="post" class="form-modify" style="display: none;" onsubmit="return validateForm(this)">
+                                <div class="records-ricovero-modify modifing-results" id="new' + index + '">
+                                  <div class="alert-banner" style="height: auto; color: red; visibility: hidden; word-wrap: break-word; width: 100%; padding: 5px; box-sizing: border-box;">Inserisci la data di ricovero!</div>
 
-        <form action="/eliminaRicovero" method="post" style="display:inline;">
-            <input type="hidden" name="id" th:value="${ricovero._id}">
-            <button type="submit" class="delete-title"> &#10005; </button>
-        </form>
 
-        <div class="result-element" th:text="${ricovero.CODricovero}"></div>
-        <div class="result-element" th:text="${ricovero.CODospedale}"></div>
-        <div class="result-element" th:text="${ricovero.COSTOricovero}"></div>
-        <div class="result-element" th:text="${ricovero.DATAricovero}"></div>
-        <div class="result-element" th:text="${ricovero.DURATAricovero}"></div>
-        <div class="result-element" th:text="${ricovero.MOTIVOricovero}"></div>
-        <div class="result-element" th:text="${ricovero.PAZIENTEricovero}"></div>
-
-        <!-- Usa data-* e un listener JS per passare i parametri come stringhe -->
-        <button type="button" class="modify" onclick="handleModifyClick(this)">  </button>
-    </div>
-</div>
+                                    <input type="hidden" name="id" th:value="${ricovero._id}">
+                                    
+                                    <input type="text" name="CODricovero" th:value="${ricovero.CODricovero}" placeholder="Cod. ricovero">
+                                    <input type="text" name="CODospedale" th:value="${ricovero.CODospedale}" placeholder="Cod. ospedale">
+                                    <input type="text" name="COSTOricovero" th:value="${ricovero.COSTOricovero}" placeholder="Costo">
+                                    <input type="date" name="DATAricovero" th:value="${ricovero.DATAricovero}" placeholder="Data ricovero">
+                                    <input type="number" name="DURATAricovero" th:value="${ricovero.DURATAricovero}" placeholder="Durata">
+                                    <input type="text" name="MOTIVOricovero" th:value="${ricovero.MOTIVOricovero}" placeholder="Motivo ricovero">
+                                    <input type="text" name="PAZIENTEricovero" th:value="${ricovero.PAZIENTEricovero}" placeholder="Paziente">
+                                    <button type="submit" class="submit-data">✔</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -134,211 +148,38 @@
         <p>&copy; 2024 Portale Sanitario Regionale. Tutti i diritti riservati.</p>
     </footer>
     <script>
+	    function validateForm(form) {
+	        const dateInput = form.querySelector('input[name="DATAricovero"]');
+	        const alertBanner = form.querySelector('.alert-banner');
+	        
+	        if (!dateInput.value) {
+	            alertBanner.style.visibility = 'visible';
+	            return false;
+	        } else {
+	            alertBanner.style.visibility = 'hidden';
+	            return true;
+	        }
+	    }
 
-        //SE VUOI ELIMINARLO SERVE PER L'IMMAGINE CHE CAMBIA COLORE 
+
         function changeImg(){
             var iconMod = document.getElementById("iconMod");
             var theme = "${theme}"; // Cambia con il valore di tema passato
             if (theme == "blue") {
-                iconMod.setAttribute("src","/image/icon-modifica.png"); // Percorso aggiornato per l'icona
+                iconMod.src = "/image/dark-edit.png";
             } else {
-                iconMod.setAttribute("src","/image/icon-modifica.png"); // Percorso aggiornato per l'icona
+                iconMod.src = "/image/white-edit.png";
             }
         }
-        document.addEventListener('DOMContentLoaded', function() {
-            changeImg();
-        });
-        function openModify2(el){
-            console.log(el);
-        }
-        //QUI INVECE SERVE PER APRIRE IL DIV DI MODIFICA SOTTO QUELLO CLICCATO 
-        //GLI PASSO L'INDICE IN ORDINE DI VISUALIZZAZIONE E IL CODICE DEL RICOVERO
+        
         function handleModifyClick(button) {
-        const parent = button.closest('.records-ricovero');
-        const count = parent.getAttribute('data-count');
-        const codricovero = parent.getAttribute('data-codricovero');
-
-        // Passa i parametri come stringhe alla funzione openModify
-        openModify(count, codricovero);
-    }
-
-    function openModify(count, codricovero) {
-        // Logica per gestire la modifica, usando count e codricovero
-        console.log('Count:', count);
-        console.log('CODricovero:', codricovero);
-            //check per vedere se sono aperti altre modifiche e chiuderle in caso e modificare il css
-            var previous = document.getElementsByClassName("openedDiv");
-            if(previous.length != 0){
-                $(previous[0]).css({
-                    "margin-bottom" : "5px",
-                    "border-radius" : "15px",
-                    "border-bottom" : "none"
-                }).removeClass("openedDiv");
-            }
-            var id = "rec-" + index;
-            var element = $("#" + id);
-            var theme = "<?php echo $_SESSION['theme']; ?>";
-            if (theme == "blue") {
-                element.css({
-                    "margin-bottom": "0px",
-                    "border-radius": "15px 15px 0px 0px", 
-                    "border-bottom": "1px solid rgb(180 214 255)"
-                });
-            } else {
-                element.css({
-                    "margin-bottom": "0px",
-                    "border-radius": "15px 15px 0px 0px", 
-                    "border-bottom": "1px solid #8c9c55"
-                });
-            }
-
-            //qui invece creo proprio il nuovo elemento richiamando la funzione che crea l'html
-            var openMod = document.getElementsByClassName("modifing-results");
-            if(openMod.length == 0){
-                createElement(index, element, codRicovero);
-            } else {
-                $(openMod).remove();
-                createElement(index, element, codRicovero);
-            }
+            var form = button.closest('.records-ricovero').querySelector('.form-modify');
+            form.style.display = form.style.display === 'none' ? 'block' : 'none';
         }
 
-        //qui creo effettivamente l'elemento ma mi serve appunto l'indice e l'elemento sotto il quale creo il div di modifica e cod ricovero per il db da passare tramite form
-        function createElement(index, element, codRicovero) {
-            var newElement = $("#new" + index);
-            if(!newElement.length) {
-                newElement = $(
-                    '<form method="post" action="../php/modificaRicovero.php" style="display: none;">' + 
-                    '<div class="records-ricovero-modify modifing-results" id="new' + index + '"> ' +
-                    '<div></div>' +
-                    '<input type="text" name="newCODricovero" placeholder="New Cod.." id="newCODricovero' + index + '" value="' + codRicovero + '"> ' +
-                    '<input type="text" name="newCODospedale" placeholder="New Ospedale.." id="newCODospedale' + index + '"> ' +
-                    '<input type="text" name="newcosto" placeholder="New Costo.." id="newcosto' + index + '"> ' +
-                    '<input type="date" name="newdata" id="newdata' + index + '"> ' +
-                    '<input type="number" name="newdurataRicovero" placeholder="New Durata.." id="newdurataRicovero' + index + '"> ' +
-                    '<input type="text" name="newmotivo" placeholder="New Motivo.." id="newmotivo' + index + '"> ' +
-                    '<input type="text" name="newCSSN" placeholder="New CSSN.." id="newCSSN' + index + '"> ' +
-                    '<input type="hidden" name="id_ricovero" value="' + codRicovero + '">' +
-                    '<button class="submit-data" type="submit"></button>' +        
-                    '</div>' +
-                    '</form>'
-                );
-
-                
-                element.addClass("openedDiv");
-                element.after(newElement);
-                newElement.slideDown(); 
-            }
+        window.onload = function() {
+            changeImg(); // Assicurati che l'icona sia aggiornata all'avvio della pagina
         }
-
-        //delete record che ti elimina il record 
-        function deleteRecord(codRicovero) {
-            if (confirm("Sei sicuro di voler eliminare questo record?")) {
-                var xhr = new XMLHttpRequest();
-                xhr.open("POST", "../php/deleteRecord.php", true); 
-                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                xhr.onreadystatechange = function () {
-                    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-                        window.location.reload();
-                    }
-                };
-                xhr.send("CODricovero=" + encodeURIComponent(codRicovero));
-            }
-        }
-
-        //event listener per ascoltare quando vine premuto il bottone per l'aggiunta di un nuovo div
-        document.addEventListener("DOMContentLoaded", function() {
-            document.getElementById("btn-adder").onclick = createAdding;
-        });
-
-        //crea la zona input sopra la tabella dei risultati
-        function createAdding() {
-            var parent = $('#adder')
-            if (!parent) {
-                console.error("Element with ID 'adder' not found.");
-                return;
-            }
-            var newadder = $("#newAdding");
-            newadder = $(
-                '<div class="adder-ricovero" id="newRecord">'+
-                    '<button class="deleter" onclick=deleteNewRecord() id="deleteNewRecord"> &#10005; </button>'+
-                    '<form method="post" action="../php/addRecord.php" class="formNewRecord">'+
-                    '<input type="text" name="newCODricovero" placeholder="Cod. ricovero">'+
-                    '<input type="text" name="newCODospedale" placeholder="Cod. ospedale">'+
-                    '<input type="text" name="newcosto" placeholder="Costo">'+
-                    '<input type="date" name="newdata" placeholder="Costo">'+
-                    '<input type="number" name="newdurataRicovero" placeholder="Durata prevista">'+
-                    '<input type="text" name="newmotivo" placeholder="Cod patologia o nuovo">'+
-                    '<input type="text" name="newCSSN" placeholder="CSSN paziente">'+
-                    '<button class="adding-btn" type="submit" id="submitNewRecord" onclick=reloadPage()> &#43; </button>'+
-                '<form>'+
-                '</div>');
-            parent.after(newadder);
-            document.getElementsByClassName("adding-crud")[0].style.display="none";
-        }
-
-        function reloadPage(){
-            window.location.reload();
-        }
-
-        function deleteNewRecord(){
-            document.getElementById("newRecord").style.display="none";
-            document.getElementById("adder").style.display="flex";
-        }
-
-
-
-        document.addEventListener('DOMContentLoaded', function() {
-            // Gestisci il click sui pulsanti "Elimina"
-            document.querySelectorAll('.delete-title').forEach(button => {
-                button.addEventListener('click', function() {
-                    const id = this.getAttribute('data-id');
-                    if (confirm('Sei sicuro di voler eliminare questo ricovero?')) {
-                        fetch(`/ricovero/delete/${id}`, {
-                            method: 'DELETE'
-                        })
-                        .then(response => {
-                            if (response.ok) {
-                                // Ricarica la pagina per aggiornare la lista
-                                window.location.reload();
-                            } else {
-                                
-                            }
-                        })
-                        .catch(error => {
-                            console.error('Errore:', error);
-                        });
-                    }
-                });
-            });
-        });
-        window.addEventListener('beforeunload', function() {
-            sessionStorage.setItem('scrollPosition', window.scrollY);
-        });
-
-
-        window.addEventListener('load', function() {
-            var scrollPosition = sessionStorage.getItem('scrollPosition');
-            if (scrollPosition) {
-                window.scrollTo(0, scrollPosition);
-                sessionStorage.removeItem('scrollPosition');
-            }
-        });
-
-        document.addEventListener('load', activeTag());
-            function activeTag(){
-            var url = window.location.href;
-            console.log(url);
-            var navTags = document.getElementsByClassName("sidebar-link");
-            
-            Array.from(navTags).forEach(a => {
-                var aHref = a.getAttribute("href");
-                aHref=aHref.substring(2);
-                if(url.includes(aHref)){
-                    a.classList.add("active");
-                }
-            });
-        }
-
     </script>
 </body>
 </html>
