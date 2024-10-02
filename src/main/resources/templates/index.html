@@ -1,122 +1,121 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en"> <!-- Dichiarazione del tipo di documento HTML e namespace per Thymeleaf -->
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="/image/icon.png"> <!-- Percorso aggiornato per l'icona -->
-    <link rel="stylesheet" href="/css/stylesheet.css"> <!-- Unico file CSS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="/js/gestioneCRUD.js"></script> <!-- Percorso aggiornato per il JS -->
-    <title>Servizio Sanitario</title>
+    <meta charset="UTF-8"> <!-- Imposta la codifica dei caratteri su UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Rende la pagina responsive su dispositivi mobili -->
+    <link rel="icon" href="/image/icon.png"> <!-- Imposta l'icona del sito -->
+    <link rel="stylesheet" href="/css/stylesheet.css"> <!-- Collega il file CSS principale -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> <!-- Inclusione di jQuery -->
+    <script src="/js/gestioneCRUD.js"></script> <!-- Inclusione di uno script JavaScript per la gestione CRUD -->
+    <title>Servizio Sanitario</title> <!-- Titolo della pagina -->
 </head>
 <body>
     <header>
-        <div id="header-container">
-            <h1 id="first">Portale Sanità</h1>
-            <h1 id="second">Regionale</h1>
+        <div id="header-container"> <!-- Contenitore per l'intestazione -->
+            <h1 id="first">Portale Sanità</h1> <!-- Titolo principale -->
+            <h1 id="second">Regionale</h1> <!-- Sottotitolo -->
         </div>
         <a class="header-link" href="https://www.fascicolosanitario.regione.lombardia.it/">
-            <button id="MakeAnAppointment">Prendi Appuntamento</button>
+            <button id="MakeAnAppointment">Prendi Appuntamento</button> <!-- Pulsante per prenotare un appuntamento -->
         </a>
     </header>
-    <div class="divider">
-        <aside class="aside-menu">
-            <div class="sidebar">
-                <p id="navbar-text">Esplora Portale</p>
-                <a href="/" class="sidebar-link">HomePage</a>
-                <a href="/ospedali" class="sidebar-link">Ospedali</a>
-                <a href="/ricovero" class="sidebar-link">Ricoveri</a>
-                <a href="/cittadini" class="sidebar-link">Cittadini</a>
-                <a href="/patologia" class="sidebar-link">Patologie</a>
+    <div class="divider"> <!-- Sezione di separazione tra intestazione e contenuto -->
+        <aside class="aside-menu"> <!-- Menu laterale -->
+            <div class="sidebar"> <!-- Contenitore del menu -->
+                <p id="navbar-text">Esplora Portale</p> <!-- Testo introduttivo del menu -->
+                <a href="/" class="sidebar-link">HomePage</a> <!-- Link alla homepage -->
+                <a href="/ospedali" class="sidebar-link">Ospedali</a> <!-- Link agli ospedali -->
+                <a href="/ricovero" class="sidebar-link">Ricoveri</a> <!-- Link ai ricoveri -->
+                <a href="/cittadini" class="sidebar-link">Cittadini</a> <!-- Link ai cittadini -->
+                <a href="/patologia" class="sidebar-link">Patologie</a> <!-- Link alle patologie -->
             </div>
-            <script src="/js/activeNavbar.js"></script>
+            <script src="/js/activeNavbar.js"></script> <!-- Script per gestire la navbar attiva -->
         </aside>
-        <div class="dashboard">
-            <p id="dash-title">Portale Sanitario Regionale</p>
+        <div class="dashboard"> <!-- Sezione principale del dashboard -->
+            <p id="dash-title">Portale Sanitario Regionale</p> <!-- Titolo del dashboard -->
             <p class="dash-text">Portale Regionale per la gestione degli ospedali in <b><u>regione</u></b>, 
-                <b>accedi</b> e <b>visualizza</b> i risultati in base alle principali aree di interesse</p>
-            <img id="dash-img" src="/image/icon.png" alt="Icona"> <!-- Percorso aggiornato per l'immagine -->
-            <p class="dash-text"><b>Cerca</b> i tuoi risultati in base alle seguenti <b><u>aree di interesse</u></b>:</p>
-            <div class="dash-button-container">
-                <div class="dash-item" id="ospedale">
+                <b>accedi</b> e <b>visualizza</b> i risultati in base alle principali aree di interesse</p> <!-- Descrizione del portale -->
+            <img id="dash-img" src="/image/icon.png" alt="Icona"> <!-- Icona del portale -->
+            <p class="dash-text"><b>Cerca</b> i tuoi risultati in base alle seguenti <b><u>aree di interesse</u></b>:</p> <!-- Istruzione per la ricerca -->
+            <div class="dash-button-container"> <!-- Contenitore per i pulsanti di accesso -->
+                <div class="dash-item" id="ospedale"> <!-- Sezione per gli ospedali -->
                     <p class="dash-text text-item"><a class="link-page" href="/ospedali">Ospedali</a></p>
-                    <img class="dash-img" id="dash-ospedale.png" src="/image/dash-ospedale.png" alt="Ospedali"> <!-- Percorso aggiornato -->
+                    <img class="dash-img" id="dash-ospedale.png" src="/image/dash-ospedale.png" alt="Ospedali"> <!-- Icona per gli ospedali -->
                 </div>
-                <div class="dash-item" id="ricovero">
+                <div class="dash-item" id="ricovero"> <!-- Sezione per i ricoveri -->
                     <p class="dash-text text-item"><a class="link-page" href="/ricovero">Ricovero</a></p>
-                    <img class="dash-img" id="dash-ricovero.png" src="/image/dash-ricovero.png" alt="Ricovero"> <!-- Percorso aggiornato -->
+                    <img class="dash-img" id="dash-ricovero.png" src="/image/dash-ricovero.png" alt="Ricovero"> <!-- Icona per i ricoveri -->
                 </div>
-                <div class="dash-item" id="cittadini">
+                <div class="dash-item" id="cittadini"> <!-- Sezione per i cittadini -->
                     <p class="dash-text text-item"><a class="link-page" href="/cittadini">Cittadini</a></p>
-                    <img class="dash-img" id="dash-cittadino.png" src="/image/dash-cittadino.png" alt="Cittadini"> <!-- Percorso aggiornato -->
+                    <img class="dash-img" id="dash-cittadino.png" src="/image/dash-cittadino.png" alt="Cittadini"> <!-- Icona per i cittadini -->
                 </div>
-                <div class="dash-item" id="patologia">
+                <div class="dash-item" id="patologia"> <!-- Sezione per le patologie -->
                     <p class="dash-text text-item"><a class="link-page" href="/patologia">Patologie</a></p>
-                    <img class="dash-img" id="dash-patologia.png" src="/image/dash-patologia.png" alt="Patologie"> <!-- Percorso aggiornato -->
+                    <img class="dash-img" id="dash-patologia.png" src="/image/dash-patologia.png" alt="Patologie"> <!-- Icona per le patologie -->
                 </div>
             </div>
-            <form method="post" action="#" th:action="@{/}">
-                <input type="hidden" name="theme" id="theme-input">
-                <div class="theme">
-                    <p class="theme-text">Scegli tema:</p>
-                    <button class="light-blue" type="button" onclick="setTheme('blue')"></button>
-                    <button class="olive" type="button" onclick="setTheme('olive')"></button>
+            <form method="post" action="#" th:action="@{/}"> <!-- Modulo per il cambio tema -->
+                <input type="hidden" name="theme" id="theme-input"> <!-- Campo nascosto per il tema -->
+                <div class="theme"> <!-- Contenitore per i pulsanti del tema -->
+                    <p class="theme-text">Scegli tema:</p> <!-- Testo per il selettore di tema -->
+                    <button class="light-blue" type="button" onclick="setTheme('blue')"></button> <!-- Pulsante per tema blu -->
+                    <button class="olive" type="button" onclick="setTheme('olive')"></button> <!-- Pulsante per tema oliva -->
                 </div>
             </form>
             <script>
-                function setTheme(theme) {
-                    document.getElementById("theme-input").value = theme;
-                    document.forms[0].submit();
+                function setTheme(theme) { // Funzione per impostare il tema
+                    document.getElementById("theme-input").value = theme; // Imposta il valore del tema
+                    document.forms[0].submit(); // Invia il modulo per cambiare il tema
                 }
             </script>
         </div>
     </div>
     <footer>
-        <p>&copy; 2024 Portale Sanitario Regionale. Tutti i diritti riservati.</p>
+        <p>&copy; 2024 Portale Sanitario Regionale. Tutti i diritti riservati.</p> <!-- Informazioni sul copyright -->
     </footer>
     <script>
-        function changeImg() {
-            const urlBlue = "/imageBlue/";
-            const urlOlive = "/image/";
-            var url;
-            var dashImg = document.getElementsByClassName("dash-img");
-            var iconImg = document.getElementById("dash-img");
-            var theme = ""; // Dovresti ottenere il tema dal server se necessario
-            if (theme === "blue") {
-                iconImg.setAttribute("src", "/imageBlue/icon.png");
+        function changeImg() { // Funzione per cambiare le immagini in base al tema
+            const urlBlue = "/imageBlue/"; // Percorso per le immagini blu
+            const urlOlive = "/image/"; // Percorso per le immagini oliva
+            var url; // Variabile per memorizzare l'URL dell'immagine
+            var dashImg = document.getElementsByClassName("dash-img"); // Seleziona tutte le immagini nel dashboard
+            var iconImg = document.getElementById("dash-img"); // Seleziona l'icona del portale
+            var theme = ""; // Variabile per il tema attivo
+            if (theme === "blue") { // Se il tema è blu
+                iconImg.setAttribute("src", "/imageBlue/icon.png"); // Cambia l'icona
             } else {
-                iconImg.setAttribute("src", "/image/icon.png");
+                iconImg.setAttribute("src", "/image/icon.png"); // Ripristina l'icona originale
             }
-            Array.from(dashImg).forEach(img => {
+            Array.from(dashImg).forEach(img => { // Itera attraverso tutte le immagini del dashboard
                 if (theme === "blue") {
-                    url = urlBlue + img.id;
+                    url = urlBlue + img.id; // Costruisce l'URL per il tema blu
                 } else {
-                    url = urlOlive + img.id;
+                    url = urlOlive + img.id; // Costruisce l'URL per il tema oliva
                 }
-                img.setAttribute("src", url);
+                img.setAttribute("src", url); // Cambia l'URL dell'immagine
             });
         }
 
-        document.addEventListener('DOMContentLoaded', function() {
-            changeImg();
+        document.addEventListener('DOMContentLoaded', function() { // Aggiunge un evento di caricamento
+            changeImg(); // Chiama la funzione per cambiare le immagini
         });
     </script>
-    <script src="/js/scrollPosition.js"></script> <!-- Percorso aggiornato per il JS -->
+    <script src="/js/scrollPosition.js"></script> <!-- Inclusione di uno script per gestire la posizione di scroll -->
 </body>
 </html>
 
 <script>
-document.addEventListener('load', activeTag());
-function activeTag(){
-    var url = window.location.href;
-    var navTags = document.getElementsByClassName("sidebar-link");
-    const path = new URL(url).pathname;
-    Array.from(navTags).forEach(a => {
-        var aHref = a.getAttribute("href");
-        if (path === aHref) {
-            a.classList.add("active");
+document.addEventListener('load', activeTag()); // Aggiunge l'evento di caricamento per la funzione activeTag
+function activeTag(){ // Funzione per attivare il link del menu attivo
+    var url = window.location.href; // Ottiene l'URL corrente
+    var navTags = document.getElementsByClassName("sidebar-link"); // Seleziona tutti i link del menu laterale
+    const path = new URL(url).pathname; // Estrae il percorso dall'URL
+    Array.from(navTags).forEach(a => { // Itera attraverso i link del menu
+        var aHref = a.getAttribute("href"); // Ottiene l'attributo href del link
+        if (path === aHref) { // Confronta il percorso corrente con l'href del link
+            a.classList.add("active"); // Aggiunge la classe "active" al link corrispondente
         }
-
-});
+    });
 }
 </script>

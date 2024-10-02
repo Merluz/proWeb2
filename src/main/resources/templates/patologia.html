@@ -1,120 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8"> <!-- Imposta la codifica dei caratteri -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Assicura la responsività su dispositivi mobili -->
     <link rel="icon" href="/image/icon.png"> <!-- Percorso aggiornato per l'icona -->
     <link rel="stylesheet" href="/css/stylesheet.css"> <!-- Percorso aggiornato per il CSS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> <!-- Inclusione di jQuery -->
     <script src="/js/gestioneCRUD.js"></script> <!-- Percorso aggiornato per il JS -->
-    <title>Servizio Sanitario</title>
+    <title>Servizio Sanitario</title> <!-- Titolo della pagina -->
 </head>
 <body>
     <header>
-        <div id="header-container">
-            <h1 id="first">Portale Sanità</h1>
-            <h1 id="second">Regionale</h1>
+        <div id="header-container"> <!-- Contenitore dell'intestazione -->
+            <h1 id="first">Portale Sanità</h1> <!-- Nome principale del portale -->
+            <h1 id="second">Regionale</h1> <!-- Sottotitolo del portale -->
         </div>
         <a class="header-link" href="https://www.fascicolosanitario.regione.lombardia.it/">
-            <button id="MakeAnAppointment">Prendi Appuntamento</button>
+            <button id="MakeAnAppointment">Prendi Appuntamento</button> <!-- Pulsante per prenotare un appuntamento -->
         </a>
     </header>
-    <div class="divider">
-        <aside class="aside-menu">
+    <div class="divider"> <!-- Divisore tra intestazione e contenuto principale -->
+        <aside class="aside-menu"> <!-- Menu laterale -->
             <div class="sidebar">
-                <p id="navbar-text">Esplora Portale</p>
+                <p id="navbar-text">Esplora Portale</p> <!-- Testo per il menu -->
+                <!-- Link per navigare tra le diverse sezioni del portale -->
                 <a href="/" class="sidebar-link">HomePage</a>
                 <a href="/ospedali" class="sidebar-link">Ospedali</a>
                 <a href="/ricovero" class="sidebar-link">Ricoveri</a>
                 <a href="/cittadini" class="sidebar-link">Cittadini</a>
                 <a href="/patologia" class="sidebar-link">Patologie</a>
             </div>
-            <script src="/js/activeNavbar.js"></script>
-            <div class="search-container">
-                <form action="#" method="get" th:action="@{/patologia}">
-                    <p class="title-search-container">Filtra</p>
-                    <input type="text" placeholder="Cerca per Nome" name="nome">
+            <script src="/js/activeNavbar.js"></script> <!-- Script per gestire la navbar attiva -->
+            <div class="search-container"> <!-- Contenitore per la barra di ricerca -->
+                <form action="#" method="get" th:action="@{/patologia}"> <!-- Form per la ricerca di patologie -->
+                    <p class="title-search-container">Filtra</p> <!-- Titolo per la sezione di ricerca -->
+                    <input type="text" placeholder="Cerca per Nome" name="nome"> <!-- Campo di ricerca per nome -->
                     <hr>
-                    <div id="container-radio">
-                        <label for="scelta" id="label-radio-general">Scegli tra:</label>
-                        <input type="radio" id="cronica" name="opt" value="cronica">
+                    <div id="container-radio"> <!-- Contenitore per i radio button -->
+                        <label for="scelta" id="label-radio-general">Scegli tra:</label> <!-- Etichetta per i radio button -->
+                        <input type="radio" id="cronica" name="opt" value="cronica"> <!-- Radio button per patologie croniche -->
                         <label for="cronica" class="label-radio">Cronica</label><br>
-                        <input type="radio" id="mortale" name="opt" value="mortale">
+                        <input type="radio" id="mortale" name="opt" value="mortale"> <!-- Radio button per patologie mortali -->
                         <label for="mortale" class="label-radio">Mortale</label><br>
-                        <input type="radio" id="qualsiasi" name="opt" value="qualsiasi">
+                        <input type="radio" id="qualsiasi" name="opt" value="qualsiasi"> <!-- Radio button per qualsiasi tipo -->
                         <label for="qualsiasi" class="label-radio">Qualsiasi</label><br>
                     </div>
                     <hr>
-                    <label id="gravity-label" for="gravita">Indica la gravità da 1 a 10</label>
-                    <input type="number" name="gravita" id="gravity" min="1" max="10">
-                    <input type="submit" value="Cerca">
+                    <label id="gravity-label" for="gravita">Indica la gravità da 1 a 10</label> <!-- Etichetta per il campo di gravità -->
+                    <input type="number" name="gravita" id="gravity" min="1" max="10"> <!-- Campo numerico per la gravità -->
+                    <input type="submit" value="Cerca"> <!-- Pulsante per inviare la ricerca -->
                 </form>
             </div>
         </aside>
-        <div class="master">
-            <div class="ordering">
-                <form method="get" action="#">
+        <div class="master"> <!-- Contenitore principale per i contenuti -->
+            <div class="ordering"> <!-- Sezione per ordinare i risultati -->
+                <form method="get" action="#"> <!-- Form per l'ordinamento -->
                     <div class="sort-bar">
-                        <label for="sort-select">Ordina per:</label>
-                        <select id="sort-select" name="order">
-                            <!-- Opzioni di ordinamento -->
+                        <label for="sort-select">Ordina per:</label> <!-- Etichetta per il selettore di ordinamento -->
+                        <select id="sort-select" name="order"> <!-- Selettore per l'ordinamento -->
+                            <!-- Opzioni di ordinamento (da definire) -->
                         </select>
                     </div>
-                    <button type="submit" name="cercaOrdine" id="ordering-submit">Ordina</button>
+                    <button type="submit" name="cercaOrdine" id="ordering-submit">Ordina</button> <!-- Pulsante per inviare l'ordinamento -->
                 </form>
-                <form method="post" action="#">
-                    <input type="hidden" name="theme" id="theme-input">
+                <form method="post" action="#"> <!-- Form per inviare il tema selezionato -->
+                    <input type="hidden" name="theme" id="theme-input"> <!-- Input nascosto per il tema -->
                 </form>
                 <script>
-                    function setTheme(theme) {
-                        document.getElementById("theme-input").value = theme;
-                        document.forms[0].submit();
+                    function setTheme(theme) { // Funzione per impostare il tema
+                        document.getElementById("theme-input").value = theme; // Imposta il valore del tema
+                        document.forms[0].submit(); // Invia il modulo
                     }
                 </script>
             </div>
-            <div class="container">
-            <div class="displayer-results">
-                <div class="titles-results-patologia">
-                    <div class="titles-elements-patologia">Nome</div>
-                    <div class="titles-elements-patologia">Cod. Patologia</div>
-                    <div class="titles-elements-patologia">Criticità</div>
-                    <div class="titles-elements-patologia">Cronica</div>
-                    <div class="titles-elements-patologia">Mortale</div>
-                </div>
-                <div class="results-list">
-                    <div th:each="patologia : ${patologie}" class="records-patologia">
-                        <div class="result-element" th:text="${patologia.nome}"></div>
-                        <div class="result-element" th:text="${patologia.CodPatologia}"></div>
-                        <div class="result-element" th:text="${patologia.criticità}"></div>
-                        <div class="result-element" th:text="${patologia.cronica ? 'Sì' : 'No'}"></div>
-                        <div class="result-element" th:text="${patologia.mortale ? 'Sì' : 'No'}"></div>
+            <div class="container"> <!-- Contenitore per i risultati -->
+                <div class="displayer-results"> <!-- Sezione per mostrare i risultati -->
+                    <div class="titles-results-patologia"> <!-- Intestazioni dei risultati -->
+                        <div class="titles-elements-patologia">Nome</div> <!-- Nome della patologia -->
+                        <div class="titles-elements-patologia">Cod. Patologia</div> <!-- Codice della patologia -->
+                        <div class="titles-elements-patologia">Criticità</div> <!-- Livello di criticità -->
+                        <div class="titles-elements-patologia">Cronica</div> <!-- Stato di patologia cronica -->
+                        <div class="titles-elements-patologia">Mortale</div> <!-- Stato di patologia mortale -->
+                    </div>
+                    <div class="results-list"> <!-- Lista dei risultati -->
+                        <div th:each="patologia : ${patologie}" class="records-patologia"> <!-- Itera attraverso le patologie -->
+                            <div class="result-element" th:text="${patologia.nome}"></div> <!-- Nome della patologia -->
+                            <div class="result-element" th:text="${patologia.CodPatologia}"></div> <!-- Codice della patologia -->
+                            <div class="result-element" th:text="${patologia.criticità}"></div> <!-- Livello di criticità -->
+                            <div class="result-element" th:text="${patologia.cronica ? 'Sì' : 'No'}"></div> <!-- Stato di patologia cronica -->
+                            <div class="result-element" th:text="${patologia.mortale ? 'Sì' : 'No'}"></div> <!-- Stato di patologia mortale -->
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        </div>
         
-        <script src="/js/gestioneCRUD.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="/js/gestioneCRUD.js"></script> <!-- Inclusione di script JS per la gestione CRUD -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> <!-- Inclusione di jQuery -->
     </div>
     <footer>
-        <p>&copy; 2024 Portale Sanitario Regionale. Tutti i diritti riservati.</p>
+        <p>&copy; 2024 Portale Sanitario Regionale. Tutti i diritti riservati.</p> <!-- Informazioni sul copyright -->
     </footer>
 </body>
 </html>
 
 <script>
-document.addEventListener('load', activeTag());
+window.addEventListener('load', activeTag); // Attiva la funzione activeTag al caricamento della pagina
 function activeTag(){
-    var url = window.location.href;
-    var navTags = document.getElementsByClassName("sidebar-link");
-    const path = new URL(url).pathname;
-    Array.from(navTags).forEach(a => {
-        var aHref = a.getAttribute("href");
-        if (path === aHref) {
-            a.classList.add("active");
+    var url = window.location.href; // Ottiene l'URL corrente
+    var navTags = document.getElementsByClassName("sidebar-link"); // Ottiene i link della sidebar
+    const path = new URL(url).pathname; // Ottiene il percorso dall'URL
+    Array.from(navTags).forEach(a => { // Itera attraverso i link della sidebar
+        var aHref = a.getAttribute("href"); // Ottiene l'attributo href di ciascun link
+        if (path === aHref) { // Controlla se il percorso corrente corrisponde all'href
+            a.classList.add("active"); // Aggiunge la classe 'active' al link corrispondente
         }
-
-});
+    });
 }
 </script>
+

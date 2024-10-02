@@ -1,141 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="/image/icon.png"> <!-- Percorso aggiornato per l'icona -->
-    <link rel="stylesheet" href="/css/stylesheet.css"> <!-- Percorso aggiornato per il CSS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <title>Servizio Sanitario</title>
+    <meta charset="UTF-8"> <!-- Imposta la codifica dei caratteri -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Permette una corretta visualizzazione su dispositivi mobili -->
+    <link rel="icon" href="/image/icon.png"> <!-- Icona del sito -->
+    <link rel="stylesheet" href="/css/stylesheet.css"> <!-- Foglio di stile per la formattazione -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> <!-- Inclusione della libreria jQuery -->
+    <title>Servizio Sanitario</title> <!-- Titolo della pagina -->
 </head>
 <body>
     <header>
-        <div id="header-container">
-            <h1 id="first">Portale Sanità</h1>
-            <h1 id="second">Regionale</h1>
+        <div id="header-container"> <!-- Contenitore dell'intestazione -->
+            <h1 id="first">Portale Sanità</h1> <!-- Titolo principale del portale -->
+            <h1 id="second">Regionale</h1> <!-- Sottotitolo del portale -->
         </div>
-        <a class="header-link" href="https://www.fascicolosanitario.regione.lombardia.it/">
-            <button id="MakeAnAppointment">Prendi Appuntamento</button>
+        <a class="header-link" href="https://www.fascicolosanitario.regione.lombardia.it/"> <!-- Link per prenotare un appuntamento -->
+            <button id="MakeAnAppointment">Prendi Appuntamento</button> <!-- Pulsante per prenotare -->
         </a>
     </header>
-    <div class="divider">
-        <aside class="aside-menu">
-            <div class="sidebar">
-                <p id="navbar-text">Esplora Portale</p>
+    <div class="divider"> <!-- Divisore tra l'intestazione e il contenuto principale -->
+        <aside class="aside-menu"> <!-- Menu laterale -->
+            <div class="sidebar"> <!-- Contenitore per i link del menu -->
+                <p id="navbar-text">Esplora Portale</p> <!-- Titolo della sezione del menu -->
+                <!-- Link per navigare tra le diverse sezioni del portale -->
                 <a href="/" class="sidebar-link">HomePage</a>
                 <a href="/ospedali" class="sidebar-link">Ospedali</a>
                 <a href="/ricovero" class="sidebar-link">Ricoveri</a>
                 <a href="/cittadini" class="sidebar-link">Cittadini</a>
                 <a href="/patologia" class="sidebar-link">Patologie</a>
             </div>
-            <script src="/js/activeNavbar.js"></script>
-            <div class="search-container">
-               <form action="#" method="get" th:action="@{/ricovero}">
-                    <p class="title-search-container">Filtra</p>
-                    <label class="label-data" for="data">Data di ricovero:</label>
-                    <input type="date" name="data_inizio">
-                    <input type="date" name="data_fine">
+            <script src="/js/activeNavbar.js"></script> <!-- Script per la gestione della navbar attiva -->
+            <div class="search-container"> <!-- Contenitore per il modulo di ricerca -->
+                <form action="#" method="get" th:action="@{/ricovero}"> <!-- Form per la ricerca dei ricoveri -->
+                    <p class="title-search-container">Filtra</p> <!-- Titolo per la sezione di filtro -->
+                    <label class="label-data" for="data">Data di ricovero:</label> <!-- Etichetta per il campo data -->
+                    <input type="date" name="data_inizio"> <!-- Campo per la data di inizio -->
+                    <input type="date" name="data_fine"> <!-- Campo per la data di fine -->
                     <hr>
-                    <label class="label-data" for="durata">Giorni di ricovero:</label>
-                    <span class="filter-span">
+                    <label class="label-data" for="durata">Giorni di ricovero:</label> <!-- Etichetta per la durata -->
+                    <span class="filter-span"> <!-- Contenitore per il campo di durata -->
                         <span>da</span>
-                        <input type="number" name="gg_inizio">
+                        <input type="number" name="gg_inizio"> <!-- Campo per il numero di giorni di inizio -->
                         <span>a</span>
-                        <input type="number" name="gg_fine">
+                        <input type="number" name="gg_fine"> <!-- Campo per il numero di giorni di fine -->
                     </span>
                     <hr>
-                    <label class="label-number" for="costo">Costo di ricovero:</label>
-                    <span class="filter-span">
+                    <label class="label-number" for="costo">Costo di ricovero:</label> <!-- Etichetta per il costo -->
+                    <span class="filter-span"> <!-- Contenitore per i campi di costo -->
                         <span>da</span>
-                        <input type="number" name="costo_inizio">
+                        <input type="number" name="costo_inizio"> <!-- Campo per il costo di inizio -->
                         <span>a</span>
-                        <input type="number" name="costo_fine">
+                        <input type="number" name="costo_fine"> <!-- Campo per il costo di fine -->
                     </span>
-                    <input type="submit" value="Cerca">
+                    <input type="submit" value="Cerca"> <!-- Pulsante per inviare la ricerca -->
                 </form>
             </div>
         </aside>
-        <div class="master">
-            <div class="ordering">
-                <form method="get" action="#">
-                    <div class="sort-bar">
-                        <label for="sort-select">Ordina per:</label>
-                        <select id="sort-select" name="order">
-                            <option value="COSTOricovero">Costo</option> <!-- Ordinamento per costo -->
-                            <option value="DURATAricovero">Durata</option> <!-- Ordinamento per durata -->
+        <div class="master"> <!-- Contenitore principale per il contenuto -->
+            <div class="ordering"> <!-- Sezione per ordinare i risultati -->
+                <form method="get" action="#"> <!-- Form per inviare la richiesta di ordinamento -->
+                    <div class="sort-bar"> <!-- Barra di ordinamento -->
+                        <label for="sort-select">Ordina per:</label> <!-- Etichetta per la selezione di ordinamento -->
+                        <select id="sort-select" name="order"> <!-- Selettore per le opzioni di ordinamento -->
+                            <option value="COSTOricovero">Costo</option> <!-- Opzione di ordinamento per costo -->
+                            <option value="DURATAricovero">Durata</option> <!-- Opzione di ordinamento per durata -->
                         </select>
                     </div>
-                    <button type="submit" name="cercaOrdine" id="ordering-submit">Ordina</button>
+                    <button type="submit" name="cercaOrdine" id="ordering-submit">Ordina</button> <!-- Pulsante per inviare l'ordinamento -->
                 </form>
-                <form method="post" action="#">
-                    <input type="hidden" name="theme" id="theme-input">
+                <form method="post" action="#"> <!-- Form per inviare il tema selezionato -->
+                    <input type="hidden" name="theme" id="theme-input"> <!-- Input nascosto per il tema -->
                 </form>
                 <script>
-                    function setTheme(theme) {
-                        document.getElementById("theme-input").value = theme;
-                        document.forms[0].submit();
+                    function setTheme(theme) { // Funzione per impostare il tema
+                        document.getElementById("theme-input").value = theme; // Imposta il valore del tema
+                        document.forms[0].submit(); // Invia il modulo
                     }
                 </script>
             </div>
-            <div class="adding-crud" id="adder">
-                <button class="adding-btn" id="btn-adder" onclick=""> &#43;</button>
-                <p class="adding-text">Aggiungi Ricovero</p>
+            <div class="adding-crud" id="adder"> <!-- Sezione per aggiungere ricoveri -->
+                <button class="adding-btn" id="btn-adder" onclick=""> &#43;</button> <!-- Pulsante per aggiungere un ricovero -->
+                <p class="adding-text">Aggiungi Ricovero</p> <!-- Testo per l'aggiunta di un ricovero -->
             </div>
-            <div class="container">
-                <div class="displayer-results">
-                    <div class="titles-results-ricovero">
-                        <div class="titles-elements-ricovero" id="delete">
-                            <button class="delete-title"> &#10005; </button>
+            <div class="container"> <!-- Contenitore per i risultati dei ricoveri -->
+                <div class="displayer-results"> <!-- Sezione per mostrare i risultati -->
+                    <div class="titles-results-ricovero"> <!-- Intestazioni dei risultati -->
+                        <div class="titles-elements-ricovero" id="delete"> <!-- Sezione per il pulsante di eliminazione -->
+                            <button class="delete-title"> &#10005; </button> <!-- Pulsante per eliminare -->
                         </div>
-                        <div class="titles-elements-ricovero">COD</div>
-                        <div class="titles-elements-ricovero">Cod. Ospedale</div>
-                        <div class="titles-elements-ricovero">Costo</div>
-                        <div class="titles-elements-ricovero">Data</div>
-                        <div class="titles-elements-ricovero">Durata</div>
-                        <div class="titles-elements-ricovero">Motivo</div>
-                        <div class="titles-elements-ricovero">CSSN</div>
-                        <div class="titles-elements-ricovero">
-                            <button class="modify-title" id="iconMod"></button>
+                        <div class="titles-elements-ricovero">COD</div> <!-- Intestazione per codice ricovero -->
+                        <div class="titles-elements-ricovero">Cod. Ospedale</div> <!-- Intestazione per codice ospedale -->
+                        <div class="titles-elements-ricovero">Costo</div> <!-- Intestazione per costo ricovero -->
+                        <div class="titles-elements-ricovero">Data</div> <!-- Intestazione per data ricovero -->
+                        <div class="titles-elements-ricovero">Durata</div> <!-- Intestazione per durata ricovero -->
+                        <div class="titles-elements-ricovero">Motivo</div> <!-- Intestazione per motivo ricovero -->
+                        <div class="titles-elements-ricovero">CSSN</div> <!-- Intestazione per CSSN -->
+                        <div class="titles-elements-ricovero"> <!-- Sezione per il pulsante di modifica -->
+                            <button class="modify-title" id="iconMod"></button> <!-- Pulsante per modificare -->
                         </div>
                     </div>
-                    <div class="results-list">
+                    <div class="results-list"> <!-- Lista dei risultati dei ricoveri -->
                         <div th:each="ricovero, iterStat : ${ricoveri}" 
                              class="records-ricovero" 
                              id="rec-[[${iterStat.count}]]" 
                              data-count="[[${iterStat.count}]]" 
-                             data-codricovero="[[${ricovero.CODricovero}]]">
-                            <div class="record-ricovero-displayer">
-                                <form action="/eliminaRicovero" method="post" style="display:inline;">
-                                    <input type="hidden" name="id" th:value="${ricovero._id}">
-                                    <button type="submit" class="delete-title"> &#10005; </button>
+                             data-codricovero="[[${ricovero.CODricovero}]]"> <!-- Itera attraverso i ricoveri -->
+                            <div class="record-ricovero-displayer"> <!-- Sezione per visualizzare un ricovero -->
+                                <form action="/eliminaRicovero" method="post" style="display:inline;"> <!-- Form per eliminare un ricovero -->
+                                    <input type="hidden" name="id" th:value="${ricovero._id}"> <!-- Input nascosto per l'ID -->
+                                    <button type="submit" class="delete-title"> &#10005; </button> <!-- Pulsante di eliminazione -->
                                 </form>
-                                <div class="result-element" th:text="${ricovero.CODricovero}"></div>
-                                <div class="result-element" th:text="${ricovero.CODospedale}"></div>
-                                <div class="result-element" th:text="${ricovero.COSTOricovero}"></div>
-                                <div class="result-element" th:text="${ricovero.DATAricovero}"></div>
-                                <div class="result-element" th:text="${ricovero.DURATAricovero}"></div>
-                                <div class="result-element" th:text="${ricovero.MOTIVOricovero}"></div>
-                                <div class="result-element" th:text="${ricovero.PAZIENTEricovero}"></div>
+                                <div class="result-element" th:text="${ricovero.CODricovero}"></div> <!-- Visualizza codice ricovero -->
+                                <div class="result-element" th:text="${ricovero.CODospedale}"></div> <!-- Visualizza codice ospedale -->
+                                <div class="result-element" th:text="${ricovero.COSTOricovero}"></div> <!-- Visualizza costo ricovero -->
+                                <div class="result-element" th:text="${ricovero.DATAricovero}"></div> <!-- Visualizza data ricovero -->
+                                <div class="result-element" th:text="${ricovero.DURATAricovero}"></div> <!-- Visualizza durata ricovero -->
+                                <div class="result-element" th:text="${ricovero.MOTIVOricovero}"></div> <!-- Visualizza motivo ricovero -->
+                                <div class="result-element" th:text="${ricovero.PAZIENTEricovero}"></div> <!-- Visualizza paziente -->
                                 
                                 <!-- Bottone modifica -->
-                                <button type="button" class="modify" onclick="handleModifyClick(this)"></button>
+                                <button type="button" class="modify" onclick="handleModifyClick(this)"></button> <!-- Pulsante per modificare il ricovero -->
                             </div>
                             <!-- Form di modifica nascosto -->
-                            <form th:action="@{/modificaRicovero}" method="post" class="form-modify" style="display: none;" onsubmit="return validateForm(this)">
+                            <form th:action="@{/modificaRicovero}" method="post" class="form-modify" style="display: none;" onsubmit="return validateForm(this)"> <!-- Form per modificare un ricovero -->
                                 <div class="records-ricovero-modify modifing-results" id="new' + index + '">
-                                  <div class="alert-banner" style="height: auto; color: red; visibility: hidden; word-wrap: break-word; width: 100%; padding: 5px; box-sizing: border-box;">Inserisci la data di ricovero!</div>
+                                  <div class="alert-banner" style="height: auto; color: red; visibility: hidden; word-wrap: break-word; width: 100%; padding: 5px; box-sizing: border-box;">Inserisci la data di ricovero!</div> <!-- Messaggio di avviso per la data mancante -->
 
-
-                                    <input type="hidden" name="id" th:value="${ricovero._id}">
+                                    <input type="hidden" name="id" th:value="${ricovero._id}"> <!-- Input nascosto per l'ID del ricovero -->
                                     
-                                    <input type="text" name="CODricovero" th:value="${ricovero.CODricovero}" placeholder="Cod. ricovero">
-                                    <input type="text" name="CODospedale" th:value="${ricovero.CODospedale}" placeholder="Cod. ospedale">
-                                    <input type="text" name="COSTOricovero" th:value="${ricovero.COSTOricovero}" placeholder="Costo">
-                                    <input type="date" name="DATAricovero" th:value="${ricovero.DATAricovero}" placeholder="Data ricovero">
-                                    <input type="number" name="DURATAricovero" th:value="${ricovero.DURATAricovero}" placeholder="Durata">
-                                    <input type="text" name="MOTIVOricovero" th:value="${ricovero.MOTIVOricovero}" placeholder="Motivo ricovero">
-                                    <input type="text" name="PAZIENTEricovero" th:value="${ricovero.PAZIENTEricovero}" placeholder="Paziente">
-                                    <button type="submit" class="submit-data">✔</button>
+                                    <input type="text" name="CODricovero" th:value="${ricovero.CODricovero}" placeholder="Cod. ricovero"> <!-- Campo per codice ricovero -->
+                                    <input type="text" name="CODospedale" th:value="${ricovero.CODospedale}" placeholder="Cod. ospedale"> <!-- Campo per codice ospedale -->
+                                    <input type="text" name="COSTOricovero" th:value="${ricovero.COSTOricovero}" placeholder="Costo"> <!-- Campo per costo -->
+                                    <input type="date" name="DATAricovero" th:value="${ricovero.DATAricovero}" placeholder="Data ricovero"> <!-- Campo per data ricovero -->
+                                    <input type="number" name="DURATAricovero" th:value="${ricovero.DURATAricovero}" placeholder="Durata"> <!-- Campo per durata -->
+                                    <input type="text" name="MOTIVOricovero" th:value="${ricovero.MOTIVOricovero}" placeholder="Motivo ricovero"> <!-- Campo per motivo -->
+                                    <input type="text" name="PAZIENTEricovero" th:value="${ricovero.PAZIENTEricovero}" placeholder="Paziente"> <!-- Campo per paziente -->
+                                    <button type="submit" class="submit-data">✔</button> <!-- Pulsante per inviare la modifica -->
                                 </div>
                             </form>
                         </div>
@@ -145,39 +145,38 @@
         </div>
     </div>
     <footer>
-        <p>&copy; 2024 Portale Sanitario Regionale. Tutti i diritti riservati.</p>
+        <p>&copy; 2024 Portale Sanitario Regionale. Tutti i diritti riservati.</p> <!-- Footer con i diritti riservati -->
     </footer>
     <script>
-	    function validateForm(form) {
-	        const dateInput = form.querySelector('input[name="DATAricovero"]');
-	        const alertBanner = form.querySelector('.alert-banner');
-	        
-	        if (!dateInput.value) {
-	            alertBanner.style.visibility = 'visible';
-	            return false;
-	        } else {
-	            alertBanner.style.visibility = 'hidden';
-	            return true;
-	        }
-	    }
+        function validateForm(form) { // Funzione per validare il modulo di modifica
+            const dateInput = form.querySelector('input[name="DATAricovero"]'); // Seleziona il campo della data
+            const alertBanner = form.querySelector('.alert-banner'); // Seleziona il banner di avviso
+            
+            if (!dateInput.value) { // Se il campo della data è vuoto
+                alertBanner.style.visibility = 'visible'; // Mostra il banner di avviso
+                return false; // Impedisce l'invio del modulo
+            } else {
+                alertBanner.style.visibility = 'hidden'; // Nasconde il banner di avviso
+                return true; // Permette l'invio del modulo
+            }
+        }
 
-
-        function changeImg(){
+        function changeImg(){ // Funzione per cambiare l'immagine del pulsante di modifica in base al tema
             var iconMod = document.getElementById("iconMod");
             var theme = "${theme}"; // Cambia con il valore di tema passato
-            if (theme == "blue") {
-                iconMod.src = "/image/dark-edit.png";
+            if (theme == "blue") { // Se il tema è blu
+                iconMod.src = "/image/dark-edit.png"; // Imposta l'immagine scura
             } else {
-                iconMod.src = "/image/white-edit.png";
+                iconMod.src = "/image/white-edit.png"; // Imposta l'immagine chiara
             }
         }
         
-        function handleModifyClick(button) {
-            var form = button.closest('.records-ricovero').querySelector('.form-modify');
-            form.style.display = form.style.display === 'none' ? 'block' : 'none';
+        function handleModifyClick(button) { // Funzione per gestire il clic sul pulsante di modifica
+            var form = button.closest('.records-ricovero').querySelector('.form-modify'); // Trova il modulo di modifica associato
+            form.style.display = form.style.display === 'none' ? 'block' : 'none'; // Alterna la visualizzazione del modulo
         }
 
-        window.onload = function() {
+        window.onload = function() { // Funzione eseguita al caricamento della pagina
             changeImg(); // Assicurati che l'icona sia aggiornata all'avvio della pagina
         }
     </script>

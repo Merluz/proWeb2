@@ -1,75 +1,75 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"> <!-- Dichiarazione del tipo di documento HTML e namespace per Thymeleaf -->
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="/image/icon.png">
-    <link rel="stylesheet" href="/css/stylesheet.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="/js/gestioneCRUD.js"></script>
-    <title>Servizio Sanitario</title>
+    <meta charset="UTF-8"> <!-- Imposta la codifica dei caratteri su UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Rende la pagina responsive su dispositivi mobili -->
+    <link rel="icon" href="/image/icon.png"> <!-- Imposta l'icona del sito -->
+    <link rel="stylesheet" href="/css/stylesheet.css"> <!-- Collega il file CSS principale -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> <!-- Inclusione di jQuery -->
+    <script src="/js/gestioneCRUD.js"></script> <!-- Inclusione di uno script JavaScript per la gestione CRUD -->
+    <title>Servizio Sanitario</title> <!-- Titolo della pagina -->
 </head>
 <body>
     <header>
-        <div id="header-container">
-            <h1 id="first">Portale Sanità</h1>
-            <h1 id="second">Regionale</h1>
+        <div id="header-container"> <!-- Contenitore per l'intestazione -->
+            <h1 id="first">Portale Sanità</h1> <!-- Titolo principale -->
+            <h1 id="second">Regionale</h1> <!-- Sottotitolo -->
         </div>
-        <a class="header-link" href="https://www.fascicolosanitario.regione.lombardia.it/">
-            <button id="MakeAnAppointment">Prendi Appuntamento</button>
+        <a class="header-link" href="https://www.fascicolosanitario.regione.lombardia.it/"> <!-- Link esterno per appuntamenti -->
+            <button id="MakeAnAppointment">Prendi Appuntamento</button> <!-- Pulsante per prenotare un appuntamento -->
         </a>
     </header>
-    <div class="divider">
-        <aside class="aside-menu">
-            <div class="sidebar">
-                <p id="navbar-text">Esplora Portale</p>
-                <a href="/" class="sidebar-link">HomePage</a>
-                <a href="/ospedali" class="sidebar-link">Ospedali</a>
-                <a href="/ricovero" class="sidebar-link">Ricoveri</a>
-                <a href="/cittadini" class="sidebar-link">Cittadini</a>
-                <a href="/patologia" class="sidebar-link">Patologie</a>
+    <div class="divider"> <!-- Sezione di separazione tra intestazione e contenuto -->
+        <aside class="aside-menu"> <!-- Menu laterale -->
+            <div class="sidebar"> <!-- Contenitore del menu -->
+                <p id="navbar-text">Esplora Portale</p> <!-- Testo introduttivo del menu -->
+                <a href="/" class="sidebar-link">HomePage</a> <!-- Link alla homepage -->
+                <a href="/ospedali" class="sidebar-link">Ospedali</a> <!-- Link agli ospedali -->
+                <a href="/ricovero" class="sidebar-link">Ricoveri</a> <!-- Link ai ricoveri -->
+                <a href="/cittadini" class="sidebar-link">Cittadini</a> <!-- Link ai cittadini -->
+                <a href="/patologia" class="sidebar-link">Patologie</a> <!-- Link alle patologie -->
             </div>
-            <script src="/js/activeNavbar.js"></script>
-            <div class="search-container">
-                <form action="#" method="get" th:action="@{/ospedali}">
-                    <p class="title-search-container">Filtra</p>
-                    <input type="text" placeholder="Cerca per Nome" name="nome">
-                    <input type="text" placeholder="Cerca per Codice" name="codice">
-                    <input type="text" placeholder="Cerca per Città" name="citta">
-                    <hr>
-                    <input type="submit" name="cercaFiltro" placeholder="Cerca" value="Cerca">
+            <script src="/js/activeNavbar.js"></script> <!-- Script per gestire la navbar attiva -->
+            <div class="search-container"> <!-- Contenitore per la barra di ricerca -->
+                <form action="#" method="get" th:action="@{/ospedali}"> <!-- Form per filtrare i risultati -->
+                    <p class="title-search-container">Filtra</p> <!-- Titolo della barra di ricerca -->
+                    <input type="text" placeholder="Cerca per Nome" name="nome"> <!-- Input per nome -->
+                    <input type="text" placeholder="Cerca per Codice" name="codice"> <!-- Input per codice -->
+                    <input type="text" placeholder="Cerca per Città" name="citta"> <!-- Input per città -->
+                    <hr> <!-- Linea orizzontale di separazione -->
+                    <input type="submit" name="cercaFiltro" placeholder="Cerca" value="Cerca"> <!-- Pulsante per inviare la ricerca -->
                 </form>
             </div>
         </aside>
-        <div class="master">
-            <div class="ordering">
-                <form method="get" action="#">
-                    <div class="sort-bar">
-                        <label for="sort-select">Ordina per:</label>
-                        <select id="sort-select" name="order">
-                            <option value="nome">Nome</option>
-                            <option value="cognome">ciità</option>
+        <div class="master"> <!-- Sezione principale della pagina -->
+            <div class="ordering"> <!-- Sezione per ordinare i risultati -->
+                <form method="get" action="#"> <!-- Form per l'ordinamento -->
+                    <div class="sort-bar"> <!-- Contenitore per il selettore di ordinamento -->
+                        <label for="sort-select">Ordina per:</label> <!-- Etichetta per il selettore -->
+                        <select id="sort-select" name="order"> <!-- Selettore per ordinare i risultati -->
+                            <option value="nome">Nome</option> <!-- Opzione per ordinare per nome -->
+                            <option value="cognome">Città</option> <!-- Opzione per ordinare per città (probabilmente c'è un errore di battitura qui, "ciità" dovrebbe essere "Città") -->
                         </select>
                     </div>
-                    <button type="submit" name="cercaOrdine" id="ordering-submit">Ordina</button>
+                    <button type="submit" name="cercaOrdine" id="ordering-submit">Ordina</button> <!-- Pulsante per inviare l'ordinamento -->
                 </form>
             </div>
-            <div class="container">
-                <div class="displayer-results">
-                    <div class="titles-results-ospedale">
-                        <div class="titles-elements-ospedale">Cod. Ospedale</div>
-                        <div class="titles-elements-ospedale">Nome</div>
-                        <div class="titles-elements-ospedale">Città</div>
-                        <div class="titles-elements-ospedale">Indirizzo</div>
-                        <div class="titles-elements-ospedale">Direttore Sanitario</div>
+            <div class="container"> <!-- Contenitore principale per i risultati -->
+                <div class="displayer-results"> <!-- Contenitore per la visualizzazione dei risultati -->
+                    <div class="titles-results-ospedale"> <!-- Intestazione dei risultati -->
+                        <div class="titles-elements-ospedale">Cod. Ospedale</div> <!-- Colonna per codice ospedale -->
+                        <div class="titles-elements-ospedale">Nome</div> <!-- Colonna per nome ospedale -->
+                        <div class="titles-elements-ospedale">Città</div> <!-- Colonna per città -->
+                        <div class="titles-elements-ospedale">Indirizzo</div> <!-- Colonna per indirizzo -->
+                        <div class="titles-elements-ospedale">Direttore Sanitario</div> <!-- Colonna per direttore sanitario -->
                     </div>
-                    <div class="results-list">
-                        <div th:each="ospedale : ${ospedali}" class="records-ospedale">
-                            <div class="result-element" th:text="${ospedale.CODospedale}"></div>
-                            <div class="result-element" th:text="${ospedale.NOMEospedale}"></div>
-                            <div class="result-element" th:text="${ospedale.CITTAospedale}"></div>
-                            <div class="result-element" th:text="${ospedale.INDIRIZZOospedale}"></div>
-                            <div class="result-element" th:text="${ospedale.DIRETTORESANITARIOospedale}"></div>
+                    <div class="results-list"> <!-- Contenitore per i risultati -->
+                        <div th:each="ospedale : ${ospedali}" class="records-ospedale"> <!-- Itera sugli ospedali -->
+                            <div class="result-element" th:text="${ospedale.CODospedale}"></div> <!-- Visualizza codice ospedale -->
+                            <div class="result-element" th:text="${ospedale.NOMEospedale}"></div> <!-- Visualizza nome ospedale -->
+                            <div class="result-element" th:text="${ospedale.CITTAospedale}"></div> <!-- Visualizza città ospedale -->
+                            <div class="result-element" th:text="${ospedale.INDIRIZZOospedale}"></div> <!-- Visualizza indirizzo ospedale -->
+                            <div class="result-element" th:text="${ospedale.DIRETTORESANITARIOospedale}"></div> <!-- Visualizza direttore sanitario -->
                         </div>
                     </div>
                 </div>
@@ -77,23 +77,22 @@
         </div>
     </div>
     <footer>
-        <p>&copy; 2024 Portale Sanitario Regionale. Tutti i diritti riservati.</p>
+        <p>&copy; 2024 Portale Sanitario Regionale. Tutti i diritti riservati.</p> <!-- Informazioni sul copyright -->
     </footer>
 </body>
 </html>
 
 <script>
-document.addEventListener('load', activeTag());
-function activeTag(){
-    var url = window.location.href;
-    var navTags = document.getElementsByClassName("sidebar-link");
-    const path = new URL(url).pathname;
-    Array.from(navTags).forEach(a => {
-        var aHref = a.getAttribute("href");
-        if (path === aHref) {
-            a.classList.add("active");
+document.addEventListener('load', activeTag()); // Event listener per l'attivazione della funzione activeTag
+function activeTag() {
+    var url = window.location.href; // Ottiene l'URL corrente
+    var navTags = document.getElementsByClassName("sidebar-link"); // Seleziona tutti i link del menu laterale
+    const path = new URL(url).pathname; // Estrae il percorso dall'URL
+    Array.from(navTags).forEach(a => { // Itera attraverso i link del menu
+        var aHref = a.getAttribute("href"); // Ottiene l'attributo href del link
+        if (path === aHref) { // Confronta il percorso corrente con l'href del link
+            a.classList.add("active"); // Aggiunge la classe "active" al link corrispondente
         }
-
-});
+    });
 }
 </script>

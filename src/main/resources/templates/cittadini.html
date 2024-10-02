@@ -1,116 +1,115 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="/image/icon.png"> <!-- Percorso aggiornato per l'icona -->
-    <link rel="stylesheet" href="/css/stylesheet.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="/js/gestioneCRUD.js"></script>
-    <title>Servizio Sanitario</title>
+    <meta charset="UTF-8"> <!-- Imposta la codifica dei caratteri su UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Rende la pagina responsive -->
+    <link rel="icon" href="/image/icon.png"> <!-- Icona della pagina -->
+    <link rel="stylesheet" href="/css/stylesheet.css"> <!-- Foglio di stile CSS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> <!-- Inclusione di jQuery -->
+    <script src="/js/gestioneCRUD.js"></script> <!-- Script JS per la gestione CRUD -->
+    <title>Servizio Sanitario</title> <!-- Titolo della pagina -->
 </head>
 <body>
     <header>
-        <div id="header-container">
-            <h1 id="first">Portale Sanità</h1>
-            <h1 id="second">Regionale</h1>
+        <div id="header-container"> <!-- Contenitore per l'intestazione -->
+            <h1 id="first">Portale Sanità</h1> <!-- Titolo principale -->
+            <h1 id="second">Regionale</h1> <!-- Sottotitolo -->
         </div>
         <a class="header-link" href="https://www.fascicolosanitario.regione.lombardia.it/">
-            <button id="MakeAnAppointment">Prendi Appuntamento</button>
+            <button id="MakeAnAppointment">Prendi Appuntamento</button> <!-- Pulsante per prenotare un appuntamento -->
         </a>
     </header>
-    <div class="divider">
-        <aside class="aside-menu">
+    <div class="divider"> <!-- Sezione di separazione -->
+        <aside class="aside-menu"> <!-- Menu laterale -->
             <div class="sidebar">
-                <p id="navbar-text">Esplora Portale</p>
-                <a href="/" class="sidebar-link">HomePage</a>
-                <a href="/ospedali" class="sidebar-link">Ospedali</a>
-                <a href="/ricovero" class="sidebar-link">Ricoveri</a>
-                <a href="/cittadini" class="sidebar-link">Cittadini</a>
-                <a href="/patologia" class="sidebar-link">Patologie</a>
+                <p id="navbar-text">Esplora Portale</p> <!-- Testo del menu -->
+                <a href="/" class="sidebar-link">HomePage</a> <!-- Link alla homepage -->
+                <a href="/ospedali" class="sidebar-link">Ospedali</a> <!-- Link agli ospedali -->
+                <a href="/ricovero" class="sidebar-link">Ricoveri</a> <!-- Link ai ricoveri -->
+                <a href="/cittadini" class="sidebar-link">Cittadini</a> <!-- Link ai cittadini -->
+                <a href="/patologia" class="sidebar-link">Patologie</a> <!-- Link alle patologie -->
             </div>
-            <script src="/js/activeNavbar.js"></script>
-            <div class="search-container">
-                <form action="/cittadini" method="get">
-                    <p class="title-search-container">Filtra</p>
-                    <input type="text" placeholder="Cerca per Nome" name="nome" th:value="${param.nome}">
-                    <input type="text" placeholder="Cerca per Cognome" name="cognome" th:value="${param.cognome}">
-                    <input type="text" placeholder="Cerca per Città" name="citta" th:value="${param.citta}">
-                    <hr>
-                    <label class="label-data" for="data_inizio">Data di nascita:</label>
-                    <input type="date" name="data_inizio" th:value="${param.dataInizio != null ? #dates.format(param.dataInizio, 'yyyy-MM-dd') : ''}">
-                    <input type="date" name="data_fine" th:value="${param.dataFine != null ? #dates.format(param.dataFine, 'yyyy-MM-dd') : ''}">
-                    <input type="submit" value="Cerca">
+            <script src="/js/activeNavbar.js"></script> <!-- Script per la gestione della navbar attiva -->
+            <div class="search-container"> <!-- Contenitore per la barra di ricerca -->
+                <form action="/cittadini" method="get"> <!-- Modulo di ricerca -->
+                    <p class="title-search-container">Filtra</p> <!-- Titolo della sezione di ricerca -->
+                    <input type="text" placeholder="Cerca per Nome" name="nome" th:value="${param.nome}"> <!-- Campo per nome -->
+                    <input type="text" placeholder="Cerca per Cognome" name="cognome" th:value="${param.cognome}"> <!-- Campo per cognome -->
+                    <input type="text" placeholder="Cerca per Città" name="citta" th:value="${param.citta}"> <!-- Campo per città -->
+                    <hr> <!-- Linea orizzontale di separazione -->
+                    <label class="label-data" for="data_inizio">Data di nascita:</label> <!-- Etichetta per la data di nascita -->
+                    <input type="date" name="data_inizio" th:value="${param.dataInizio != null ? #dates.format(param.dataInizio, 'yyyy-MM-dd') : ''}"> <!-- Campo data di inizio -->
+                    <input type="date" name="data_fine" th:value="${param.dataFine != null ? #dates.format(param.dataFine, 'yyyy-MM-dd') : ''}"> <!-- Campo data di fine -->
+                    <input type="submit" value="Cerca"> <!-- Pulsante di invio per la ricerca -->
                 </form>
             </div>
         </aside>
-        <div class="master">
-            <div class="ordering">
-                <form method="get" action="#">
+        <div class="master"> <!-- Sezione principale dei risultati -->
+            <div class="ordering"> <!-- Contenitore per ordinare i risultati -->
+                <form method="get" action="#"> <!-- Modulo di ordinamento -->
                     <div class="sort-bar">
-                        <label for="sort-select">Ordina per:</label>
-                        <select id="sort-select" name="order">
-                            <option value="nome">Nome</option>
-                            <option value="cognome">Cognome</option>
+                        <label for="sort-select">Ordina per:</label> <!-- Etichetta per il selettore di ordinamento -->
+                        <select id="sort-select" name="order"> <!-- Selettore per l'ordinamento -->
+                            <option value="nome">Nome</option> <!-- Opzione di ordinamento per nome -->
+                            <option value="cognome">Cognome</option> <!-- Opzione di ordinamento per cognome -->
                         </select>
                     </div>
-                    <button type="submit" id="ordering-submit">Ordina</button>
+                    <button type="submit" id="ordering-submit">Ordina</button> <!-- Pulsante di invio per ordinare -->
                 </form>
-                <form method="post" action="#">
-                    <input type="hidden" name="theme" id="theme-input">
+                <form method="post" action="#"> <!-- Modulo per il tema -->
+                    <input type="hidden" name="theme" id="theme-input"> <!-- Campo nascosto per il tema -->
                 </form>
                 <script>
-                    function setTheme(theme) {
-                        document.getElementById("theme-input").value = theme;
-                        document.forms[1].submit(); // Assicurati che l'indice del modulo sia corretto
+                    function setTheme(theme) { // Funzione per impostare il tema
+                        document.getElementById("theme-input").value = theme; // Imposta il valore del tema nel campo nascosto
+                        document.forms[1].submit(); // Invia il modulo per cambiare il tema
                     }
                 </script>
             </div>
-            <div class="container">
-                <div class="displayer-results">
-                    <div class="titles-results-cittadini">
-                        <div class="titles-elements-cittadini">CSSN</div>
-                        <div class="titles-elements-cittadini">Nome</div>
-                        <div class="titles-elements-cittadini">Cognome</div>
-                        <div class="titles-elements-cittadini">Indirizzo</div>
-                        <div class="titles-elements-cittadini">Luogo di Nascita</div>
-                        <div class="titles-elements-cittadini">Data di Nascita</div>
+            <div class="container"> <!-- Contenitore per i risultati -->
+                <div class="displayer-results"> <!-- Sezione per visualizzare i risultati -->
+                    <div class="titles-results-cittadini"> <!-- Titoli delle colonne dei risultati -->
+                        <div class="titles-elements-cittadini">CSSN</div> <!-- Titolo per CSSN -->
+                        <div class="titles-elements-cittadini">Nome</div> <!-- Titolo per Nome -->
+                        <div class="titles-elements-cittadini">Cognome</div> <!-- Titolo per Cognome -->
+                        <div class="titles-elements-cittadini">Indirizzo</div> <!-- Titolo per Indirizzo -->
+                        <div class="titles-elements-cittadini">Luogo di Nascita</div> <!-- Titolo per Luogo di Nascita -->
+                        <div class="titles-elements-cittadini">Data di Nascita</div> <!-- Titolo per Data di Nascita -->
                     </div>
-                    <div th:if="${#lists.isEmpty(cittadini)}" class="no-results">
+                    <div th:if="${#lists.isEmpty(cittadini)}" class="no-results"> <!-- Messaggio per nessun risultato -->
                         Nessun cittadino trovato con i criteri di ricerca.
                     </div>
-                    <div th:each="cittadino : ${cittadini}" class="records-cittadini">
-                        <div class="result-element" th:text="${cittadino.CSSNcittadino}"></div>
-                        <div class="result-element" th:text="${cittadino.NOMEcittadino}"></div>
-                        <div class="result-element" th:text="${cittadino.COGNOMEcittadino}"></div>
-                        <div class="result-element" th:text="${cittadino.INDIRIZZOcittadino}"></div>
-                        <div class="result-element" th:text="${cittadino.LUOGONASCITAcittadino}"></div>
-                        <div class="result-element" th:text="${cittadino.DATANASCITAcittadino}"></div>
+                    <div th:each="cittadino : ${cittadini}" class="records-cittadini"> <!-- Ciclo per ogni cittadino -->
+                        <div class="result-element" th:text="${cittadino.CSSNcittadino}"></div> <!-- Visualizza CSSN -->
+                        <div class="result-element" th:text="${cittadino.NOMEcittadino}"></div> <!-- Visualizza Nome -->
+                        <div class="result-element" th:text="${cittadino.COGNOMEcittadino}"></div> <!-- Visualizza Cognome -->
+                        <div class="result-element" th:text="${cittadino.INDIRIZZOcittadino}"></div> <!-- Visualizza Indirizzo -->
+                        <div class="result-element" th:text="${cittadino.LUOGONASCITAcittadino}"></div> <!-- Visualizza Luogo di Nascita -->
+                        <div class="result-element" th:text="${cittadino.DATANASCITAcittadino}"></div> <!-- Visualizza Data di Nascita -->
                     </div>
                 </div>
             </div>
         </div>
         
-        <script src="/js/gestioneCRUD.js"></script>
+        <script src="/js/gestioneCRUD.js"></script> <!-- Script per la gestione CRUD -->
     </div>
     <footer>
-        <p>&copy; 2024 Portale Sanitario Regionale. Tutti i diritti riservati.</p>
+        <p>&copy; 2024 Portale Sanitario Regionale. Tutti i diritti riservati.</p> <!-- Informazioni sul copyright -->
     </footer>
 </body>
 </html>
 
 <script>
-document.addEventListener('load', activeTag());
+document.addEventListener('load', activeTag()); // Aggiunge l'evento di caricamento per attivare la funzione activeTag
 function activeTag(){
-    var url = window.location.href;
-    var navTags = document.getElementsByClassName("sidebar-link");
-    const path = new URL(url).pathname;
-    Array.from(navTags).forEach(a => {
-        var aHref = a.getAttribute("href");
-        if (path === aHref) {
-            a.classList.add("active");
+    var url = window.location.href; // Ottiene l'URL corrente
+    var navTags = document.getElementsByClassName("sidebar-link"); // Seleziona i link del menu laterale
+    const path = new URL(url).pathname; // Estrae il percorso dall'URL
+    Array.from(navTags).forEach(a => { // Itera attraverso i link del menu
+        var aHref = a.getAttribute("href"); // Ottiene l'attributo href del link
+        if (path === aHref) { // Confronta il percorso corrente con l'href del link
+            a.classList.add("active"); // Aggiunge la classe "active" al link corrispondente
         }
-
-});
+    });
 }
 </script>

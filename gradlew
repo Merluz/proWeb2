@@ -66,19 +66,18 @@
 
 # Resolve links: $0 may be a link
 app_path=$0
-
-# Need this for daisy-chained symlinks.
 while
-    APP_HOME=${app_path%"${app_path##*/}"}  # leaves a trailing /; empty if no leading path
-    [ -h "$app_path" ]
+    APP_HOME=${app_path%"${app_path##*/}"}  # Imposta APP_HOME rimuovendo il nome file dal percorso
+    [ -h "$app_path" ] # Verifica se il percorso è un link simbolico
 do
-    ls=$( ls -ld "$app_path" )
-    link=${ls#*' -> '}
-    case $link in             #(
-      /*)   app_path=$link ;; #(
-      *)    app_path=$APP_HOME$link ;;
+    ls=$( ls -ld "$app_path" ) # Legge il collegamento simbolico
+    link=${ls#*' -> '} # Estrae il percorso effettivo
+    case $link in
+      /*) app_path=$link ;; # Percorso assoluto
+      *) app_path=$APP_HOME$link ;; # Percorso relativo
     esac
 done
+
 
 # This is normally unused
 # shellcheck disable=SC2034

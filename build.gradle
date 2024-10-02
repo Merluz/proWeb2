@@ -1,45 +1,46 @@
 plugins {
-    id 'java'
-    id 'org.springframework.boot' version '3.3.3'
-    id 'io.spring.dependency-management' version '1.1.6'
+    id 'java' // Plugin per progetti Java
+    id 'org.springframework.boot' version '3.3.3' // Plugin per gestire progetti Spring Boot con versione 3.3.3
+    id 'io.spring.dependency-management' version '1.1.6' // Plugin per la gestione delle dipendenze in Spring Boot
 }
 
-group = 'com.prj2'
-version = '0.0.1'
-sourceCompatibility = '22'
-targetCompatibility = '22'
+group = 'com.prj2' // Definisce il gruppo del progetto, che rappresenta il package base
+version = '0.0.1' // Versione del progetto
+
+// Definizione della compatibilità con la versione di Java
+sourceCompatibility = '22' // Imposta la versione di Java sorgente su 22
+targetCompatibility = '22' // Imposta la versione di Java destinazione su 22
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(22)
+        languageVersion = JavaLanguageVersion.of(22) // Definisce il toolchain per Java 22
     }
 }
 
 repositories {
-    mavenCentral()
+    mavenCentral() // Repository da cui recuperare le dipendenze, in questo caso Maven Central
 }
 
 dependencies {
-    // Spring Boot Starters
-    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
-    
-    // MongoDB Driver 
-    implementation 'org.mongodb:mongodb-driver-sync:5.1.2' 
+    // Dipendenze Spring Boot
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf' // Starter per Thymeleaf, usato per la creazione di pagine HTML
+    implementation 'org.springframework.boot:spring-boot-starter-web' // Starter per le applicazioni Web Spring Boot (incluso Spring MVC)
+    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb' // Starter per l'integrazione con MongoDB
 
-    // DevTools for development
-    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    // Driver MongoDB per la comunicazione con il database Mongo
+    implementation 'org.mongodb:mongodb-driver-sync:5.1.2' // Dipendenza per il driver MongoDB
 
-    // Testing
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    // DevTools per migliorare lo sviluppo
+    developmentOnly 'org.springframework.boot:spring-boot-devtools' // Aggiunge funzionalità di auto-restart e live-reload durante lo sviluppo
+
+    // Dipendenze per il testing
+    testImplementation 'org.springframework.boot:spring-boot-starter-test' // Starter per il testing con JUnit, Mockito e altre librerie di test
 }
 
 tasks.named('test') {
-    useJUnitPlatform()
+    useJUnitPlatform() // Configura i test per utilizzare JUnit 5 (JUnit Platform)
 }
 
 tasks.withType(JavaCompile) {
-    options.compilerArgs << '-parameters'
+    options.compilerArgs << '-parameters' // Aggiunge l'argomento per preservare i nomi dei parametri nel bytecode per una migliore integrazione con strumenti come Spring
 }
-
