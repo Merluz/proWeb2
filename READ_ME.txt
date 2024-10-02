@@ -1,14 +1,14 @@
-*****IMPORTANTE*****
+********************************* IMPORTANTE **************************************************
 
 Per l'installazione è necessario l'uso di JAVA-22 
 
 L'utilizzo di altre versioni potrebbe dar luogo a diversi problemi di installazione
 
-********************
+***********************************************************************************************
 
 ISTRUZIONI PER L'INSTALLAZIONE:
 
-1. Scaricare il file "Sito Sanitario"
+1. Scaricare il file "Installer Sito Sanitario"
 2. Eseguirlo 
 3. Dovrebbe aprirsi una pagina web:
     	a. In caso positivo è possibile navigare o utilizzare l'applicazione
@@ -17,7 +17,7 @@ ISTRUZIONI PER L'INSTALLAZIONE:
 	c. In caso che neanche accedendo alla porta manualmente sia stato possibile accedere,
 	   riavviare il pc. 
 
-********************
+***********************************************************************************************
 
 
 		
