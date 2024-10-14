@@ -49,6 +49,23 @@ taskkill /PID <PID> /F
 
 
 ***********************************************************************************************
+VERSIONI
 
-
+Plugin di Gradle
+Java: Plugin standard di Gradle per i progetti Java.
+Spring Boot: Versione 3.3.3.
+Spring Dependency Management: Versione 1.1.6.
+Configurazione Java
+Compatibilità del codice sorgente: Java versione 22.
+Compatibilità del target: Java versione 22.
+Toolchain Java: Usa Java 22 per la compilazione.
+Repositories
+Maven Central: Repository da cui recuperare le dipendenze.
+Dipendenze
+Spring Boot Starter per Thymeleaf: Per l'integrazione di Thymeleaf.
+Spring Boot Starter Web: Per creare applicazioni web usando Spring MVC.
+Spring Boot Starter Data MongoDB: Per connettersi a MongoDB e gestire il database.
+Driver MongoDB Sync: Versione 5.1.2, il driver MongoDB per l'interazione con il database in modo sincrono.
+Spring Boot DevTools: Solo per lo sviluppo, aiuta con il riavvio rapido e il miglioramento dell'efficienza dello sviluppo.
+Spring Boot Starter Test: Per testare l'applicazione con strumenti integrati in Spring Boot.
 		
