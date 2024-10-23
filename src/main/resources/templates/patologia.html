@@ -46,8 +46,7 @@
                         <label for="qualsiasi" class="label-radio">Qualsiasi</label><br>
                     </div>
                     <hr>
-                    <label id="gravity-label" for="gravita">Indica la gravità da 1 a 10</label> <!-- Etichetta per il campo di gravità -->
-                    <input type="number" name="gravita" id="gravity" min="1" max="10"> <!-- Campo numerico per la gravità -->
+
                     <input type="submit" value="Cerca"> <!-- Pulsante per inviare la ricerca -->
                 </form>
             </div>
@@ -58,7 +57,10 @@
                     <div class="sort-bar">
                         <label for="sort-select">Ordina per:</label> <!-- Etichetta per il selettore di ordinamento -->
                         <select id="sort-select" name="order"> <!-- Selettore per l'ordinamento -->
-                            <!-- Opzioni di ordinamento (da definire) -->
+                                              
+                            <option value="CodPatologia">CodPatologia</option> <!-- Opzione di ordinamento per costo -->
+                            <option value="nome">nome</option> <!-- Opzione di ordinamento per durata -->
+                        </select>
                         </select>
                     </div>
                     <button type="submit" name="cercaOrdine" id="ordering-submit">Ordina</button> <!-- Pulsante per inviare l'ordinamento -->
@@ -66,12 +68,7 @@
                 <form method="post" action="#"> <!-- Form per inviare il tema selezionato -->
                     <input type="hidden" name="theme" id="theme-input"> <!-- Input nascosto per il tema -->
                 </form>
-                <script>
-                    function setTheme(theme) { // Funzione per impostare il tema
-                        document.getElementById("theme-input").value = theme; // Imposta il valore del tema
-                        document.forms[0].submit(); // Invia il modulo
-                    }
-                </script>
+
             </div>
             <div class="container"> <!-- Contenitore per i risultati -->
                 <div class="displayer-results"> <!-- Sezione per mostrare i risultati -->

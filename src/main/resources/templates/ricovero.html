@@ -71,12 +71,7 @@
                 <form method="post" action="#"> <!-- Form per inviare il tema selezionato -->
                     <input type="hidden" name="theme" id="theme-input"> <!-- Input nascosto per il tema -->
                 </form>
-                <script>
-                    function setTheme(theme) { // Funzione per impostare il tema
-                        document.getElementById("theme-input").value = theme; // Imposta il valore del tema
-                        document.forms[0].submit(); // Invia il modulo
-                    }
-                </script>
+
             </div>
             <div class="adding-crud" id="adder"> <!-- Sezione per aggiungere ricoveri -->
                 <button class="adding-btn" id="btn-adder" onclick="createAdding()"> &#43;</button> <!-- Pulsante per aggiungere un ricovero -->
@@ -180,5 +175,21 @@
             changeImg(); // Assicurati che l'icona sia aggiornata all'avvio della pagina
         }
     </script>
+    
+    <script>
+	window.addEventListener('load', activeTag); // Attiva la funzione activeTag al caricamento della pagina
+	function activeTag(){
+	    var url = window.location.href; // Ottiene l'URL corrente
+	    var navTags = document.getElementsByClassName("sidebar-link"); // Ottiene i link della sidebar
+	    const path = new URL(url).pathname; // Ottiene il percorso dall'URL
+	    Array.from(navTags).forEach(a => { // Itera attraverso i link della sidebar
+	        var aHref = a.getAttribute("href"); // Ottiene l'attributo href di ciascun link
+	        if (path === aHref) { // Controlla se il percorso corrente corrisponde all'href
+	            a.classList.add("active"); // Aggiunge la classe 'active' al link corrispondente
+	        }
+	    });
+	}
+	</script>
+    
 </body>
 </html>

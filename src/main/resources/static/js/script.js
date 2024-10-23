@@ -131,7 +131,7 @@ function createAdding() {
     newadder = $( // Create a new form for adding records
         '<div class="adder-ricovero" id="newRecord">'+
             '<button class="deleter" onclick=deleteNewRecord() id="deleteNewRecord"> &#10005; </button>'+
-            '<form method="post" action="/addRecord" class="formNewRecord">'+
+            '<form method="post" action="/aggiungiRicovero" class="formNewRecord">'+
             '<input type="text" name="newCODricovero" placeholder="Cod. ricovero">'+
             '<input type="text" name="newCODospedale" placeholder="Cod. ospedale">'+
             '<input type="text" name="newcosto" placeholder="Costo">'+

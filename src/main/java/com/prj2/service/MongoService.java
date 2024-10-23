@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -122,7 +123,15 @@ public class MongoService {
     public List<Document> getRicoveri() {
         MongoDatabase database = mongoClient.getDatabase(DATABASE_NAME);
         MongoCollection<Document> collection = database.getCollection(RECOVERY_COLLECTION_NAME);
-        return collection.find().into(new ArrayList<>());
+        
+        // Ottieni la lista dei ricoveri
+        List<Document> ricoveri = collection.find().into(new ArrayList<>());
+        
+        // Inverti l'ordine della lista
+        Collections.reverse(ricoveri);
+        
+        // Ritorna la lista invertita
+        return ricoveri;
     }
 
     // Metodo per ricercare ricoveri in base a diversi parametri
