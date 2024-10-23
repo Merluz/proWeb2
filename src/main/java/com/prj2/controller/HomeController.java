@@ -1,3 +1,19 @@
+package com.prj2.controller;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+import org.bson.Document;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import com.prj2.service.MongoService;
+import org.springframework.ui.Model;
+
+
 @Controller
 public class HomeController {
 
@@ -66,7 +82,7 @@ public class HomeController {
         @RequestParam(value = "costo_inizio", required = false) Double costoInizio,
         @RequestParam(value = "costo_fine", required = false) Double costoFine,
         @RequestParam(value = "order", required = false) String order, // Parametro opzionale per l'ordinamento
-        Model model) {
+         Model model) {
 
         // Esegue la ricerca dei ricoveri con i parametri forniti
         List<Document> ricoveri = mongoService.ricercaRicoveri(dataInizio, dataFine, ggInizio, ggFine, costoInizio, costoFine, order);

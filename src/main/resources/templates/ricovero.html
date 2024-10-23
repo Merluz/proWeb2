@@ -29,7 +29,7 @@
                 <a href="/cittadini" class="sidebar-link">Cittadini</a>
                 <a href="/patologia" class="sidebar-link">Patologie</a>
             </div>
-            <script src="/js/activeNavbar.js"></script> <!-- Script per la gestione della navbar attiva -->
+          
             <div class="search-container"> <!-- Contenitore per il modulo di ricerca -->
                 <form action="#" method="get" th:action="@{/ricovero}"> <!-- Form per la ricerca dei ricoveri -->
                     <p class="title-search-container">Filtra</p> <!-- Titolo per la sezione di filtro -->
@@ -79,7 +79,7 @@
                 </script>
             </div>
             <div class="adding-crud" id="adder"> <!-- Sezione per aggiungere ricoveri -->
-                <button class="adding-btn" id="btn-adder" onclick=""> &#43;</button> <!-- Pulsante per aggiungere un ricovero -->
+                <button class="adding-btn" id="btn-adder" onclick="createAdding()"> &#43;</button> <!-- Pulsante per aggiungere un ricovero -->
                 <p class="adding-text">Aggiungi Ricovero</p> <!-- Testo per l'aggiunta di un ricovero -->
             </div>
             <div class="container"> <!-- Contenitore per i risultati dei ricoveri -->
@@ -108,7 +108,7 @@
                             <div class="record-ricovero-displayer"> <!-- Sezione per visualizzare un ricovero -->
                                 <form action="/eliminaRicovero" method="post" style="display:inline;"> <!-- Form per eliminare un ricovero -->
                                     <input type="hidden" name="id" th:value="${ricovero._id}"> <!-- Input nascosto per l'ID -->
-                                    <button type="submit" class="delete-title"> &#10005; </button> <!-- Pulsante di eliminazione -->
+                                    <button type="submit" class="delete-title" onclick="deleteRecord()"> &#10005; </button> <!-- Pulsante di eliminazione -->
                                 </form>
                                 <div class="result-element" th:text="${ricovero.CODricovero}"></div> <!-- Visualizza codice ricovero -->
                                 <div class="result-element" th:text="${ricovero.CODospedale}"></div> <!-- Visualizza codice ospedale -->
@@ -124,7 +124,7 @@
                             <!-- Form di modifica nascosto -->
                             <form th:action="@{/modificaRicovero}" method="post" class="form-modify" style="display: none;" onsubmit="return validateForm(this)"> <!-- Form per modificare un ricovero -->
                                 <div class="records-ricovero-modify modifing-results" id="new' + index + '">
-                                  <div class="alert-banner" style="height: auto; color: red; visibility: hidden; word-wrap: break-word; width: 100%; padding: 5px; box-sizing: border-box;">Inserisci la data di ricovero!</div> <!-- Messaggio di avviso per la data mancante -->
+                                  <div></div>
 
                                     <input type="hidden" name="id" th:value="${ricovero._id}"> <!-- Input nascosto per l'ID del ricovero -->
                                     
@@ -147,19 +147,19 @@
     <footer>
         <p>&copy; 2024 Portale Sanitario Regionale. Tutti i diritti riservati.</p> <!-- Footer con i diritti riservati -->
     </footer>
+	<script src="/js/script.js">
+	
+	</script>
     <script>
-        function validateForm(form) { // Funzione per validare il modulo di modifica
-            const dateInput = form.querySelector('input[name="DATAricovero"]'); // Seleziona il campo della data
-            const alertBanner = form.querySelector('.alert-banner'); // Seleziona il banner di avviso
-            
-            if (!dateInput.value) { // Se il campo della data è vuoto
-                alertBanner.style.visibility = 'visible'; // Mostra il banner di avviso
-                return false; // Impedisce l'invio del modulo
-            } else {
-                alertBanner.style.visibility = 'hidden'; // Nasconde il banner di avviso
-                return true; // Permette l'invio del modulo
-            }
-        }
+		function validateForm(form) {
+			        const dateInput = form.querySelector('input[name="DATAricovero"]');			       		        
+			        if (!dateInput.value) {
+			            alert("Manca la data di ricovero!");
+			            return false;
+			        } else {
+			            return true;
+			        }
+			    }
 
         function changeImg(){ // Funzione per cambiare l'immagine del pulsante di modifica in base al tema
             var iconMod = document.getElementById("iconMod");

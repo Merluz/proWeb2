@@ -278,6 +278,9 @@ span {
 }
 
  /*adding CRUD*/
+  records-ricovero-modify {
+     height: 45px;
+ }
  .adding-crud{
     width: 100%;
     display: flex;

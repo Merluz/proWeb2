@@ -24,21 +24,24 @@ if (darkModeButton) {
 }
 
 // Set active class on the sidebar based on current URL
-document.addEventListener('load', activeTag());
+document.addEventListener('DOMContentLoaded', activeTag);
+
 function activeTag() {
-    var url = window.location.href; // Get current URL
-    var navTags = document.getElementsByClassName("sidebar-link"); // Get all sidebar links
-    
+    var url = window.location.pathname; // Ottieni il percorso della URL corrente
+    var navTags = document.getElementsByClassName("sidebar-link"); // Ottieni tutti i link della sidebar
+
     Array.from(navTags).forEach(a => {
-        var aHref = a.getAttribute("href");
-        aHref = aHref.substring(2); // Adjust the href value
-        if (aHref === "/") {
-            a.classList.add("active"); // Add 'active' class to the home link
+        var aHref = a.getAttribute("href"); // Ottieni l'attributo href del link
+
+        // Aggiungi la classe 'active' solo al link corrispondente
+        if (url === aHref) { 
+            a.classList.add("active");
         } else {
-            a.classList.add("active"); // Add 'active' class to other links
+            a.classList.remove("active"); // Rimuovi la classe 'active' dagli altri link
         }
     });
 }
+
 
 // Function to open a modification section for a record
 function openModify(index, codRicovero) {
@@ -106,22 +109,15 @@ function createElement(index, element, codRicovero) {
 
 // Function to delete a record
 function deleteRecord(codRicovero) {
-    if (confirm("Sei sicuro di voler eliminare questo record?")) { // Confirmation dialog
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "../php/deleteRecord.php", true); 
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-                window.location.reload(); // Reload page after deletion
-            }
-        };
-        xhr.send("CODricovero=" + encodeURIComponent(codRicovero)); // Send record ID to delete
-    }
+	if (!confirm("Sei sicuro di voler eliminare questo ricovero?")) {
+	    event.preventDefault(); // Annulla l'invio del modulo
+	}
+
 }
 
 // Add event listener for adding new records
-document.addEventListener("DOMContentLoaded", function() {
-    document.getElementById("btn-adder").onclick = createAdding;
+document.addEventListener(onclick, function() {
+    document.getElementById("btn-adder").onclick = createAdding();
 });
 
 // Function to create a new record form
@@ -135,7 +131,7 @@ function createAdding() {
     newadder = $( // Create a new form for adding records
         '<div class="adder-ricovero" id="newRecord">'+
             '<button class="deleter" onclick=deleteNewRecord() id="deleteNewRecord"> &#10005; </button>'+
-            '<form method="post" action="../php/addRecord.php" class="formNewRecord">'+
+            '<form method="post" action="/addRecord" class="formNewRecord">'+
             '<input type="text" name="newCODricovero" placeholder="Cod. ricovero">'+
             '<input type="text" name="newCODospedale" placeholder="Cod. ospedale">'+
             '<input type="text" name="newcosto" placeholder="Costo">'+
@@ -144,7 +140,7 @@ function createAdding() {
             '<input type="text" name="newmotivo" placeholder="Cod patologia o nuovo">'+
             '<input type="text" name="newCSSN" placeholder="CSSN paziente">'+
             '<button class="adding-btn" type="submit" id="submitNewRecord" onclick=reloadPage()> &#43; </button>'+
-        '<form>'+
+        '</form>'+
         '</div>');
     parent.after(newadder); // Add new record form after the parent element
     document.getElementsByClassName("adding-crud")[0].style.display = "none"; // Hide add button
